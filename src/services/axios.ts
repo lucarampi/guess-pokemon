@@ -1,17 +1,13 @@
 import axios from 'axios';
+import { buildWebStorage, setupCache } from 'axios-cache-interceptor/dist/index.cjs';
 
 export const pokemonAPI = axios.create({
-  baseURL: 'https://pokeapi.co/api/v2/pokemon/',
+  baseURL: 'https://pokeapi.co/api/v2/',
 });
 
-
-export const pokemonData = axios.create({
-  baseURL: '',
-});
-
-export const api = axios.create({
+export const api = setupCache(axios.create({
   baseURL: 'api',
-});
+}));
 
 export interface PokemonInterface {
   id: number

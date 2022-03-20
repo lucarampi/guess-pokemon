@@ -11,14 +11,17 @@ export function PokemonsTable() {
       <table>
         <thead>
           <tr>
-            <th>Titulo</th>
-            <th>Valor</th>
-            <th>Categoria</th>
-            <th>Data</th>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Weight</th>
+            <th>Height</th>
+            <th>Type 1</th>
+            <th>Type 2</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          { pokemons ? (
+          {pokemons.length > 0 ? (
             pokemons.map((pokemon) => (
               <PokemonItem key={pokemon.id} {...pokemon} />
             ))
@@ -28,7 +31,7 @@ export function PokemonsTable() {
                 Ops... parece que ainda não tem nada aqui... Cadastre uma{" "}
                 <strong onClick={handleOpenNewPokemonModal}>
                   nova transação
-                </strong>{console.log(pokemons)}
+                </strong>
                 e veja o que acontece!
               </td>
             </tr>

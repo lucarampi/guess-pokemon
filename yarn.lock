@@ -395,6 +395,15 @@ axe-core@^4.3.5:
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.4.1.tgz#7dbdc25989298f9ad006645cd396782443757413"
   integrity sha512-gd1kmb21kwNuWr6BQz8fv6GNECPBnUasepcoLbekws23NVBLODdsClRZ+bQ8+9Uomf3Sm3+Vwn0oYG9NvwnJCw==
 
+axios-cache-interceptor@^0.10.1:
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/axios-cache-interceptor/-/axios-cache-interceptor-0.10.1.tgz#d5efcf2495a528241baf0105097bf89f5ed5adac"
+  integrity sha512-DvMYUHm+EWqmYhi0PkFnoJIzjjr6yHQ5pbpD4mH9qsR25rY16H7B1aFpM29xxSIkFN7Q9/SqupWANVzrGQfhmg==
+  dependencies:
+    cache-parser "^1.2.2"
+    fast-defer "^1.1.5"
+    object-code "^1.2.0"
+
 axios@*, axios@^0.26.1:
   version "0.26.1"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.26.1.tgz#1ede41c51fcf51bbbd6fd43669caaa4f0495aaa9"
@@ -462,6 +471,11 @@ bufferutil@^4.0.1:
   integrity sha512-jduaYOYtnio4aIAyc6UbvPCVcgq7nYpVnucyxr6eCYg/Woad9Hf/oxxBRDnGGjPfjUm6j5O/uBWhIu4iLebFaw==
   dependencies:
     node-gyp-build "^4.3.0"
+
+cache-parser@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/cache-parser/-/cache-parser-1.2.2.tgz#bd92b28c14d84716e96d55ea8bcad8fe19328eff"
+  integrity sha512-fYyjfGESPFxpiWyfkuC4Ox7GargvOohtKmGnXMIID1WBfFIxMkwwfNH5xavwwn3jMCuge/krb2nXzAvQ5dHlvQ==
 
 call-bind@^1.0.0, call-bind@^1.0.2:
   version "1.0.2"
@@ -924,6 +938,11 @@ fast-deep-equal@^3.1.1, fast-deep-equal@^3.1.3:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz#3a7d56b559d6cbc3eb512325244e619a65c6c525"
   integrity sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==
+
+fast-defer@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/fast-defer/-/fast-defer-1.1.5.tgz#0103cb248483e9b6cb931ffd9f56edf1ee1b62f3"
+  integrity sha512-5URGfQbNb+IJXv4AWvFldxvaMHXQdfvKVQGIrJ5PaJq+s9fFWtDSB+EhuCpvH608kXIxuulHkwrsWH33ONplnw==
 
 fast-glob@^3.2.9:
   version "3.2.11"
@@ -1493,6 +1512,11 @@ object-assign@^4.1.0, object-assign@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
   integrity sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=
+
+object-code@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/object-code/-/object-code-1.2.0.tgz#aaa1ddc9bb69c1bbd9d2102e3553c541a099076e"
+  integrity sha512-VFYjh8+8Bfk5AuvVsqhoi36033g0NJ7/V4YS/RjhMFtfUdCrO5SjS57yUsDeGjKff8qKnJvdYYXBDSEI2eOIAQ==
 
 object-inspect@^1.11.0, object-inspect@^1.9.0:
   version "1.12.0"

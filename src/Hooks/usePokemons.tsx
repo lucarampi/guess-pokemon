@@ -17,6 +17,7 @@ interface PokemonsContextData {
   pokemons: PokemonInterface[];
   createPokemon: (pokemon: PokemonInput) => Promise<void>;
   deletePokemon: (id: number) => Promise<void>;
+  getPokemons: () => Promise<PokemonInterface[]>;
 }
 
 const PokemonsContext = createContext<PokemonsContextData>(
@@ -26,15 +27,14 @@ const PokemonsContext = createContext<PokemonsContextData>(
 export function PokemonsProvider({ children }: PokemonsProviderProps) {
   const [pokemons, setPokemons] = useState<PokemonInterface[]>([]);
   useEffect(() => {
-    api.get(`pokemons/data`).then((response) =>
-    setPokemons(response.data));
-    
+    getPokemons()     
   }, []);
 
   //request api to create new Pokemon
   async function createPokemon(pokemonInput: PokemonInput) {
     const response = await api.post(`pokemons/add`, pokemonInput);
     const updatedPokemons = response.data;
+    Promise.all(updatedPokemons)
     setPokemons([...updatedPokemons]);
   }
 
@@ -42,8 +42,19 @@ export function PokemonsProvider({ children }: PokemonsProviderProps) {
   async function deletePokemon(id: number) {
     const response = await api.delete(`/pokemons/${id}`);
     const updatedPokemons = response.data;
+    Promise.all(updatedPokemons)
     setPokemons([...updatedPokemons]);
   }
+
+    //request api to get all Pokemons
+    async function getPokemons() {
+      const response = await api.get(`/pokemons/data`);
+      const updatedPokemons = response.data;
+      Promise.all(updatedPokemons)
+      setPokemons([...updatedPokemons]);
+      return updatedPokemons;
+    }
+  
 
   return (
     <PokemonsContext.Provider
@@ -51,6 +62,7 @@ export function PokemonsProvider({ children }: PokemonsProviderProps) {
         pokemons,
         createPokemon,
         deletePokemon,
+        getPokemons
       }}
     >
       {children}

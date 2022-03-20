@@ -1,11 +1,11 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { pokemonAPI, pokemonData } from '../../../services/axios'
+import { pokemonAPI } from '../../../services/axios'
 import { supabase } from '../../../services/supabase'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { PokemonInterface } from '../../../services/axios'
 
 const POKEMON_COUNT = 10;
-const ENABLE_DATABASE_UPDATE = false;
+const ENABLE_DATABASE_UPDATE = true;
 
 interface PokeapiInterface {
   results: Array<PokeapiUrlInterface>
@@ -34,9 +34,17 @@ interface PokeapiPokemomInterface {
   }
 };
 
+function getPokemonList(){
+  return `/pokemon/?limit=${POKEMON_COUNT}`
+}
+function getPokemonById({url}:PokeapiUrlInterface){
+  const id = url.split("pokemon/")[1]
+  return `pokemon/${id}`
+}
+
 async function getPokemonsUrlFromExternalApi() {
   const urls = await pokemonAPI
-    .get<PokeapiInterface>(`?limit=${POKEMON_COUNT}`)
+    .get<PokeapiInterface>(getPokemonList())
     .then((response) => {
       const data = response.data.results
       const urlObjectArray: PokeapiUrlInterface[] = Object.assign(data.map((pokemon) => {
@@ -50,8 +58,35 @@ async function getPokemonsUrlFromExternalApi() {
 
 async function getFromattedPokemonsFromExternalApi(url: PokeapiUrlInterface[]) {
   const pokemomArray = url.map(async (pokemonUrl) => {
-    const pokemon = await pokemonData
-      .get<PokeapiPokemomInterface>(pokemonUrl.url)
+    const pokemon = await pokemonAPI
+      .get<PokeapiPokemomInterface>(getPokemonById(pokemonUrl))
+      .then((response) => {
+        const data = response.data
+        const types = data.types.map((type) => {
+          return type.type.name
+        })
+        const pokemonFormated: PokemonInterface = {
+          id: data.id,
+          name: data.name,
+          height: (data.height * 10), //convert decimeter to cm
+          weight: (data.weight * 100), //convert hetogram to gram
+          types: {
+            type1: types[0],
+            type2: types[1]
+          },
+          imageUrl: data.sprites.other['official-artwork']?.front_default,
+        }
+        return pokemonFormated
+      })
+    return pokemon
+  })
+  return Promise.all(pokemomArray)
+}
+
+async function getFromattedPokemonsFromExternalApiV2(url: PokeapiUrlInterface[]) {
+  const pokemomArray = url.map(async (pokemonUrl) => {
+    const pokemon = await pokemonAPI
+      .get<PokeapiPokemomInterface>(getPokemonById(pokemonUrl))
       .then((response) => {
         const data = response.data
         const types = data.types.map((type) => {
@@ -151,7 +186,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(200).json(await getAllPokemons())
   }
   else if (req.method === 'PUT') {
-    
+
     const { id, height, name, types, weight, imageUrl } = req.body
     const newPokemon: PokemonInterface = { id, height, name, types, weight, imageUrl }
     await supabase.from("pokemons")

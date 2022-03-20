@@ -2,12 +2,13 @@ import type { NextPage } from "next";
 import _ from "lodash";
 import Head from "next/head";
 import styles from "./home.module.scss";
-import { api, PokemonInterface } from "../services/axios";
+import { PokemonInterface } from "../services/axios";
 import { useEffect, useState } from "react";
 import { GuessedPokemon } from "../components/GuessedPokemon";
 import { PokemonStats } from "../components/PokemonStats";
 import { CurrentPokemon } from "../components/CurrentPokemon";
 import { Lifes } from "../components/Lifes";
+import { usePokemons } from "../Hooks/usePokemons";
 
 interface gameState {
   lifes: number;
@@ -17,10 +18,16 @@ interface gameState {
 }
 
 const Home: NextPage = () => {
-  const [pokemons, setPokemons] = useState<PokemonInterface[]>([]);
-  const [randomPokemon, setRandomPokemon] = useState<PokemonInterface>();
-  const [selectedPokemon, setSelectedPokemon] = useState<PokemonInterface>();
-  const [selectedId, setSelectedId] = useState(1);
+  const { pokemons } = usePokemons();
+  const [randomPokemon, setRandomPokemon] = useState<PokemonInterface>(() => {
+    return (pokemons && _.sample(pokemons)) || ({} as PokemonInterface);
+  });
+  const [selectedPokemon, setSelectedPokemon] = useState<PokemonInterface>(
+    () => {
+      return pokemons && (_.sample(pokemons) || ({} as PokemonInterface));
+    }
+  );
+  const [selectedId, setSelectedId] = useState(selectedPokemon.id);
   const [gameState, setGameState] = useState<gameState>({
     lifes: 5,
     start: false,
@@ -30,33 +37,20 @@ const Home: NextPage = () => {
 
   function generateNewRandomPokemon() {
     setRandomPokemon(_.sample(pokemons));
-    setGameState({ ...gameState, start: true, lose: false, win: false });
+    setGameState({
+      ...gameState,
+      lifes: 5,
+      start: true,
+      lose: false,
+      win: false,
+    });
   }
 
-  const getPokemons = async () => {
-    return await api.get<PokemonInterface[]>("/pokemons");
-  };
-
   useEffect(() => {
-    const updatePokemons = async () => {
-      await getPokemons().then((response) => {
-        setPokemons(response.data);
-      });
-    };
-    updatePokemons();
-  }, []);
-
-  useEffect(() => {
-    if (
-      selectedPokemon?.id === randomPokemon?.id &&
-      selectedPokemon?.id !== undefined
-    ) {
-      setGameState({ ...gameState,start:false ,win: true });
+    if (selectedPokemon?.id === randomPokemon?.id && gameState.start) {
+      setGameState({ ...gameState, start: false, win: true });
     }
-    if (
-      selectedPokemon?.id !== randomPokemon?.id &&
-      selectedPokemon?.id !== undefined
-    ) {
+    if (selectedPokemon?.id !== randomPokemon?.id && gameState.start) {
       if (gameState.lifes - 1 === 0) {
         setGameState({
           ...gameState,
@@ -97,7 +91,15 @@ const Home: NextPage = () => {
         <div className={styles.gameStart}>
           <button
             onClick={() => {
-              setSelectedPokemon(pokemons[0]);
+              setSelectedPokemon({
+                id: -1,
+                name: "Select a Pokemon",
+                imageUrl:
+                  "https://www.freeiconspng.com/thumbs/pokeball-png/pokeball-transparent-png-2.png",
+                types: { type1: "", type2: "" },
+                height: 0,
+                weight: 0,
+              });
               generateNewRandomPokemon();
             }}
           >
@@ -121,18 +123,19 @@ const Home: NextPage = () => {
                 );
               }}
             >
+              <option value={-1} selected disabled hidden>
+                Choose here
+              </option>
               {pokemons.map((pokemon) => (
                 <option value={pokemon.id}>{pokemon.name}</option>
               ))}
             </select>
-            
             <PokemonStats
               selectedPokemon={selectedPokemon}
               randomPokemon={randomPokemon}
             />
             <Lifes lifes={gameState.lifes} />
           </section>
-
           <GuessedPokemon {...selectedPokemon} />
         </>
       )}
