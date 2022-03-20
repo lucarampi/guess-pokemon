@@ -22,8 +22,6 @@ export default function Management (){
             <NewPokemonModal
             active={isOpen}
             />
-            
-            <h1>Management</h1>
            <PokemonsTable/>
         </div>
 

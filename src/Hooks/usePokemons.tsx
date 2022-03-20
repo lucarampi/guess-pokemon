@@ -6,7 +6,7 @@ import {
   useState,
 } from "react";
 import { api, PokemonInterface } from "../services/axios";
-type PokemonInput = Omit<PokemonInterface, "id">;
+
 //--------------------------------------------------------------
 
 interface PokemonsProviderProps {
@@ -15,9 +15,10 @@ interface PokemonsProviderProps {
 
 interface PokemonsContextData {
   pokemons: PokemonInterface[];
-  createPokemon: (pokemon: PokemonInput) => Promise<void>;
+  createPokemon: (pokemon: PokemonInterface) => Promise<void>;
   deletePokemon: (id: number) => Promise<void>;
   getPokemons: () => Promise<PokemonInterface[]>;
+  editPokemon: (pokemon:PokemonInterface) => Promise<void>;
 }
 
 const PokemonsContext = createContext<PokemonsContextData>(
@@ -31,8 +32,15 @@ export function PokemonsProvider({ children }: PokemonsProviderProps) {
   }, []);
 
   //request api to create new Pokemon
-  async function createPokemon(pokemonInput: PokemonInput) {
+  async function createPokemon(pokemonInput: PokemonInterface) {
     const response = await api.post(`pokemons/add`, pokemonInput);
+    const updatedPokemons = response.data;
+    Promise.all(updatedPokemons)
+    setPokemons([...updatedPokemons]);
+  }
+
+  async function editPokemon(pokemonInput: PokemonInterface) {
+    const response = await api.put(`pokemons/edit`, pokemonInput);
     const updatedPokemons = response.data;
     Promise.all(updatedPokemons)
     setPokemons([...updatedPokemons]);
@@ -62,7 +70,8 @@ export function PokemonsProvider({ children }: PokemonsProviderProps) {
         pokemons,
         createPokemon,
         deletePokemon,
-        getPokemons
+        getPokemons,
+        editPokemon
       }}
     >
       {children}

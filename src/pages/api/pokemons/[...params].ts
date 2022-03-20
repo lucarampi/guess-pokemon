@@ -4,7 +4,7 @@ import { supabase } from '../../../services/supabase'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { PokemonInterface } from '../../../services/axios'
 
-const POKEMON_COUNT = 10;
+const POKEMON_COUNT = 20;
 const ENABLE_DATABASE_UPDATE = false;
 
 interface PokeapiInterface {
@@ -16,7 +16,6 @@ interface PokeapiUrlInterface {
 }
 
 interface PokeapiPokemomInterface {
-  id: number
   name: string
   height: number
   weight: number
@@ -33,6 +32,8 @@ interface PokeapiPokemomInterface {
     }
   }
 };
+
+type PokemonNoId = Omit<PokemonInterface, "id">;
 
 function getPokemonList() {
   return `/pokemon/?limit=${POKEMON_COUNT}`
@@ -61,7 +62,7 @@ async function getFromattedPokemonsFromExternalApi(url: PokeapiUrlInterface[]) {
     const { data } = await pokemonAPI
       .get<PokeapiPokemomInterface>(getPokemonById(pokemonUrl))
 
-    const { types, id, height, weight, name, sprites } = data
+    const { types, height, weight, name, sprites } = data
 
     const [type1,type2] = types.map((type) => type.type.name)
 
@@ -69,8 +70,7 @@ async function getFromattedPokemonsFromExternalApi(url: PokeapiUrlInterface[]) {
     const convertedWeight = weight * 10  //convert hetogram to gram
     const formattedImageUrl = sprites.other['official-artwork']?.front_default
 
-    const pokemonFormated: PokemonInterface = {
-      id,
+    const pokemonFormated: PokemonNoId = {
       name,
       height: convertedHeight,
       weight: convertedWeight,
@@ -86,7 +86,7 @@ async function getFromattedPokemonsFromExternalApi(url: PokeapiUrlInterface[]) {
   return Promise.all(pokemomArray)
 }
 
-const registerPokemon = async (newPokemom: PokemonInterface) => {
+const registerPokemon = async (newPokemom: PokemonNoId) => {
   console.log("Inserting data...");
   console.log(newPokemom);
   await supabase.from("pokemons").insert([newPokemom]);
@@ -156,18 +156,18 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(200).json(await getAllPokemons())
   }
   else if (req.method === 'POST') {
-    const { id, height, name, types, weight, imageUrl } = req.body
-    const newPokemon = { id, height, name, types, weight, imageUrl }
+    const {height, name, types, weight, imageUrl } = req.body
+    const newPokemon:PokemonNoId = { height, name, types, weight, imageUrl }
     await registerPokemon(newPokemon)
     res.status(200).json(await getAllPokemons())
   }
   else if (req.method === 'PUT') {
 
-    const { id, height, name, types, weight, imageUrl } = req.body
-    const newPokemon: PokemonInterface = { id, height, name, types, weight, imageUrl }
+    const {id, height, name, types, weight, imageUrl } = req.body
+    const newPokemon: PokemonNoId = { height, name, types, weight, imageUrl }
     await supabase.from("pokemons")
       .update(newPokemon)
-      .match({ id: newPokemon.id });
+      .match({ id: id });
     res.status(200).json(await getAllPokemons())
   }
   else if (req.method === 'DELETE') {

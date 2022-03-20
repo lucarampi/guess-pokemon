@@ -116,6 +116,7 @@ const Home: NextPage = () => {
             <select
               value={selectedId}
               name="pokemonSelect"
+              defaultValue={-1}
               onChange={(ev) => {
                 setSelectedId(parseInt(ev.target.value, 10));
                 setSelectedPokemon(
@@ -123,7 +124,7 @@ const Home: NextPage = () => {
                 );
               }}
             >
-              <option value={-1} selected disabled hidden>
+              <option value={-1} disabled hidden>
                 Choose here
               </option>
               {pokemons.map((pokemon) => (

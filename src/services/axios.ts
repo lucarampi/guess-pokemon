@@ -10,7 +10,7 @@ export const api = setupCache(axios.create({
 }));
 
 export interface PokemonInterface {
-  id: number
+  id?: number
   name: string
   height: number
   weight: number

@@ -1,8 +1,9 @@
 .container {
     margin-top: 4rem;
     display: flex;
-    overflow: auto;
-
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
     table {
         width: 100%;
         border-spacing: 0 0.5rem;
