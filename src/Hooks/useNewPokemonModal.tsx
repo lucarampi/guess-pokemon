@@ -12,7 +12,7 @@ interface ModalProviderProps {
 interface NewPokemonModalContextData {
   handleOpenNewPokemonModal: () => void;
   handleCloseNewPokemonModal: () => void;
-  open: boolean;
+  isOpen: boolean;
 }
 
 const NewPokemonModalContext = createContext<NewPokemonModalContextData>(
@@ -21,23 +21,23 @@ const NewPokemonModalContext = createContext<NewPokemonModalContextData>(
 
 export function NewPokemonModalProvider({ children }: ModalProviderProps) {
 
-  //handle modal state
-  const [open, setOpen] =
-    useState(false);
+  //========== handle modal state ==========
+  const [isOpen, setIsOpen] = useState(false);
 
   function handleOpenNewPokemonModal() {
-    setOpen(!open);
+    setIsOpen(true);
   }
   function handleCloseNewPokemonModal() {
-    setOpen(false);
+    setIsOpen(false);
   }
+  //========================================
 
   return (
     <NewPokemonModalContext.Provider
       value={{
         handleOpenNewPokemonModal,
         handleCloseNewPokemonModal,
-        open: open,
+        isOpen
       }}
     >
       {children}

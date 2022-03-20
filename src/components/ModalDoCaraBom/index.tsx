@@ -1,21 +1,20 @@
 import { SyntheticEvent, useState } from "react";
+import { useNewPokemonModal } from "../../Hooks/useNewPokemonModal";
 import styles from "./styles.module.scss";
 
 interface ModalDoCaraBomProps {
   active: boolean;
-  setActive: (value: boolean) => void;
+
 }
+
 
 export default function ModalDoCaraBom({
   active,
-  setActive,
 }: ModalDoCaraBomProps) {
-  function closeModal() {
-    setActive(false);
-  }
-
+  const {handleCloseNewPokemonModal} = useNewPokemonModal()
+  
   function handleOutsideClick(ev: SyntheticEvent) {
-    ev.target === ev.currentTarget && closeModal();
+    ev.target === ev.currentTarget && handleCloseNewPokemonModal();
   }
 
   return (
@@ -24,7 +23,7 @@ export default function ModalDoCaraBom({
       onClick={handleOutsideClick}
     >
       <div className={styles.modal_wrapper}>
-        <button className={styles.close_modal} onClick={closeModal}>
+        <button className={styles.close_modal} onClick={handleCloseNewPokemonModal}>
           X
         </button>
         <p>

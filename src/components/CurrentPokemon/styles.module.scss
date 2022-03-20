@@ -1,0 +1,24 @@
+
+
+.pokemonDisplay {
+
+    .pokemonBackground{
+        position: relative;
+        border: 5px solid;
+        border-radius: 1rem;
+        width: 100%;
+    }
+
+    .pokemonSilhouette {
+        filter: brightness(0);
+        // position: absolute;
+        // top: 175px;
+        // left: 185px;
+    }
+}
+
+.contaier {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

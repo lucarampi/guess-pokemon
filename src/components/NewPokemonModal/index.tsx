@@ -1,23 +1,32 @@
-import Modal from "react-modal";
-import { FormEvent, useState } from "react";
+import { FormEvent, SyntheticEvent, useState } from "react";
+import { useNewPokemonModal } from "../../Hooks/useNewPokemonModal";
 import styles from "./styles.module.scss";
 import { usePokemons } from "../../Hooks/usePokemons";
-import closingImg from "../../assets/close.svg";
-import { useNewPokemonModal } from "../../Hooks/useNewPokemonModal";
+import closeImg from "../../assets/close.svg";
+import {api} from "../../services/axios"
 
-export function NewPokemonModal() {
-  const { handleCloseNewPokemonModal, open } = useNewPokemonModal();
+interface ModalDoCaraBomProps {
+  active: boolean;
+}
+
+export default function NewPokemonModal({ active }: ModalDoCaraBomProps) {
+  const { handleCloseNewPokemonModal} = useNewPokemonModal();
   const { createPokemon } = usePokemons();
   const [name, setName] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState("https://cdn-icons-png.flaticon.com/128/188/188918.png");
+  const [imageUrlAux, setImageUrlAux] = useState("https://cdn-icons-png.flaticon.com/128/188/188918.png");
   const [type1, setType1] = useState("");
   const [type2, setType2] = useState("");
   const [height, setHeight] = useState(0);
   const [weight, setWeight] = useState(0);
 
+  function handleOutsideClick(ev: SyntheticEvent) {
+    ev.target === ev.currentTarget && handleCloseNewPokemonModal();
+  }
+
   function resetModalForm() {
     setName("");
-    setImageUrl("");
+    setImageUrl("https://cdn-icons-png.flaticon.com/128/188/188918.png");
     setType1("");
     setType2("");
     setHeight(0);
@@ -39,70 +48,76 @@ export function NewPokemonModal() {
     resetModalForm();
     handleCloseNewPokemonModal();
   }
-  // Modal.setAppElement('#yourAppElement');
 
   return (
-    <Modal
-      isOpen={open}
-      onRequestClose={hadleCreateNewPokemon}
-      overlayClassName="react-modal-overlay"
-      className="react-modal-content"
+    <div
+      className={`${styles.modal} ${active && styles.active}`}
+      onClick={handleOutsideClick}
     >
-      <button
-        type="button"
-        onClick={handleCloseNewPokemonModal}
-        className="react-modal-close"
-      >
-        <img src={closingImg} alt="Close" />
-      </button>
+      <div  className={styles.modal_wrapper}>
+        <img src={closeImg}
+          onClick={handleCloseNewPokemonModal}
+          className={styles.close_modal}
+        />
+        <form className={styles.container} onSubmit={hadleCreateNewPokemon}>
+          <img src={imageUrl} alt="New pokemon image" />
+          <input
+            type="text"
+            placeholder="Pokemon's image (URL)"
+            name=""
+            required
+            value={imageUrlAux}
+            onChange={(event) => setImageUrlAux(event.target.value)}
+            onBlur={() => setImageUrl(imageUrlAux)}
+          />
+          <input
+            type="text"
+            placeholder="Pokemon's Name"
+            name=""
+            required
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+          />
+          <div className={styles.two_items_container}>
+          <input
+            type="number"
+            placeholder="Weight"
+            name=""
+            required
+            step={0.01}
+            value={weight}
+            onChange={(event) => setWeight(Number(event.target.value))}
+          />
+          <input
+            type="number"
+            placeholder="Height"
+            name=""
+            required
+            step={0.01}
+            value={height}
+            onChange={(event) => setHeight(Number(event.target.value))}
+          />
+          </div>
 
-      <form className={styles.container} onSubmit={hadleCreateNewPokemon}>
-        <h2>Nova Transação</h2>
-        <input
-          type="text"
-          placeholder="Pokemon's Name"
-          name=""
-          required
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-        />
-        <input
-          type="number"
-          placeholder="Weight"
-          name=""
-          required
-          step={0.01}
-          value={weight}
-          onChange={(event) => setWeight(Number(event.target.value))}
-        />
-        <input
-          type="number"
-          placeholder="Height"
-          name=""
-          required
-          step={0.01}
-          value={height}
-          onChange={(event) => setHeight(Number(event.target.value))}
-        />
+          <input
+            type="text"
+            placeholder="Type 1"
+            name=""
+            required
+            value={type1}
+            onChange={(event) => setType1(event.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Type 2"
+            name=""
+            value={type2}
+            onChange={(event) => setType2(event.target.value)}
+          />
 
-        <input
-          type="text"
-          placeholder="Type 1"
-          name=""
-          required
-          value={type1}
-          onChange={(event) => setType1(event.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Type 2"
-          name=""
-          value={type2}
-          onChange={(event) => setType2(event.target.value)}
-        />
-
-        <button type="submit">Cadastrar</button>
-      </form>
-    </Modal>
+          <button type="submit">Cadastrar</button>
+        </form>
+      </div>
+    </div>
   );
 }

@@ -1,11 +1,11 @@
-import { useNewPokemonModal } from "../../Hooks/useNewPokemonModal";
+// import { useNewPokemonModal } from "../../Hooks/useNewPokemonModal";
 import { usePokemons } from "../../Hooks/usePokemons";
 import { PokemonItem } from "../PokemonItem";
 import styles from "./styles.module.scss";
 
 export function PokemonsTable() {
   const { pokemons } = usePokemons();
-  const { handleOpenNewPokemonModal } = useNewPokemonModal();
+  // const { handleOpenNewPokemonModal } = useNewPokemonModal();
   return (
     <div className={styles.container}>
       <table>
@@ -29,7 +29,8 @@ export function PokemonsTable() {
             <tr>
               <td className="warning-empty" colSpan={4}>
                 Ops... parece que ainda não tem nada aqui... Cadastre uma{" "}
-                <strong onClick={handleOpenNewPokemonModal}>
+                <strong 
+                >
                   nova transação
                 </strong>
                 e veja o que acontece!

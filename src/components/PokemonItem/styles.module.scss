@@ -17,3 +17,12 @@
         }
     }
 }
+
+.table_row {
+    background-color: white;
+    transition: all 0.25s;
+
+    &:hover {
+        filter: brightness(0.95);
+    }
+}

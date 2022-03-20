@@ -5,7 +5,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { PokemonInterface } from '../../../services/axios'
 
 const POKEMON_COUNT = 10;
-const ENABLE_DATABASE_UPDATE = true;
+const ENABLE_DATABASE_UPDATE = false;
 
 interface PokeapiInterface {
   results: Array<PokeapiUrlInterface>
@@ -34,10 +34,10 @@ interface PokeapiPokemomInterface {
   }
 };
 
-function getPokemonList(){
+function getPokemonList() {
   return `/pokemon/?limit=${POKEMON_COUNT}`
 }
-function getPokemonById({url}:PokeapiUrlInterface){
+function getPokemonById({ url }: PokeapiUrlInterface) {
   const id = url.split("pokemon/")[1]
   return `pokemon/${id}`
 }
@@ -58,54 +58,30 @@ async function getPokemonsUrlFromExternalApi() {
 
 async function getFromattedPokemonsFromExternalApi(url: PokeapiUrlInterface[]) {
   const pokemomArray = url.map(async (pokemonUrl) => {
-    const pokemon = await pokemonAPI
+    const { data } = await pokemonAPI
       .get<PokeapiPokemomInterface>(getPokemonById(pokemonUrl))
-      .then((response) => {
-        const data = response.data
-        const types = data.types.map((type) => {
-          return type.type.name
-        })
-        const pokemonFormated: PokemonInterface = {
-          id: data.id,
-          name: data.name,
-          height: (data.height * 10), //convert decimeter to cm
-          weight: (data.weight * 100), //convert hetogram to gram
-          types: {
-            type1: types[0],
-            type2: types[1]
-          },
-          imageUrl: data.sprites.other['official-artwork']?.front_default,
-        }
-        return pokemonFormated
-      })
-    return pokemon
-  })
-  return Promise.all(pokemomArray)
-}
 
-async function getFromattedPokemonsFromExternalApiV2(url: PokeapiUrlInterface[]) {
-  const pokemomArray = url.map(async (pokemonUrl) => {
-    const pokemon = await pokemonAPI
-      .get<PokeapiPokemomInterface>(getPokemonById(pokemonUrl))
-      .then((response) => {
-        const data = response.data
-        const types = data.types.map((type) => {
-          return type.type.name
-        })
-        const pokemonFormated: PokemonInterface = {
-          id: data.id,
-          name: data.name,
-          height: (data.height * 10), //convert decimeter to cm
-          weight: (data.weight * 100), //convert hetogram to gram
-          types: {
-            type1: types[0],
-            type2: types[1]
-          },
-          imageUrl: data.sprites.other['official-artwork']?.front_default,
-        }
-        return pokemonFormated
-      })
-    return pokemon
+    const { types, id, height, weight, name, sprites } = data
+
+    const [type1,type2] = types.map((type) => type.type.name)
+
+    const convertedHeight = height * 10 //convert decimeter to cm
+    const convertedWeight = weight * 10  //convert hetogram to gram
+    const formattedImageUrl = sprites.other['official-artwork']?.front_default
+
+    const pokemonFormated: PokemonInterface = {
+      id,
+      name,
+      height: convertedHeight,
+      weight: convertedWeight,
+      types: {
+        type1,
+        type2
+      },
+      imageUrl: formattedImageUrl,
+    }
+
+    return pokemonFormated
   })
   return Promise.all(pokemomArray)
 }
@@ -176,7 +152,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     else {
       console.log("Database is up to date...");
     }
-    
+
     res.status(200).json(await getAllPokemons())
   }
   else if (req.method === 'POST') {
