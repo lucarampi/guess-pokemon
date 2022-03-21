@@ -13,7 +13,6 @@
 
         &:hover {
             filter: opacity(1);
-
         }
     }
 }
@@ -26,11 +25,32 @@
     background-color: rgb(255, 190, 146);
     border-radius: 1rem;
     transition: all 0.2s ease-in-out;
+    padding: 0.25rem;
+
     &:hover {
         cursor: pointer;
-       transform: scale(1.1);
+        transform: scale(1.1);
     }
-    p{
+
+    &:hover img {
+        animation: zoom-in-zoom-out 2s ease-in-out infinite;
+    }
+
+    p {
         text-transform: capitalize;
+    }
+
+    @keyframes zoom-in-zoom-out {
+        0% {
+            transform: scale(1, 1);
+        }
+
+        50% {
+            transform: scale(1.05, 1.05);
+        }
+
+        100% {
+            transform: scale(1, 1);
+        }
     }
 }

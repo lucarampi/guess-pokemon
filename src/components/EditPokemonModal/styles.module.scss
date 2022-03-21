@@ -50,9 +50,6 @@
     img {
         align-self: center;
         width: 150px;
-        &:hover {
-            cursor: pointer;
-        }
         animation: zoom-in-zoom-out 5s ease-in-out infinite;
         @keyframes zoom-in-zoom-out {
             0% {
@@ -82,9 +79,13 @@
             padding-left: 1rem;
             border: 1px solid lightgray;
             border-radius: 3px;
+            transition: all 0.15s ease-in-out;
 
-            &:not(:first-child()) {
+            &:not(:first-child) {
                 text-transform: capitalize;
+            }
+            &:hover{
+                background-color: whitesmoke;
             }
         }
     }
