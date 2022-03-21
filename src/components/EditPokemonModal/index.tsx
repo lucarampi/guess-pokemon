@@ -3,23 +3,19 @@ import styles from "./styles.module.scss";
 import Image from "next/image";
 import { PokemonInterface } from "../../services/axios";
 import { usePokemons } from "../../Hooks/usePokemons";
+import { useEditPokemonModal } from "../../Hooks/useEditPokemonModal";
 
 interface ModalDoCaraBomProps {
   active: boolean;
   pokemon: PokemonInterface;
-  setIsOpen: (value: boolean) => void;
 }
 
-export default function NewPokemonModal({
+export default function EditPokemonModal({
   active,
-  setIsOpen,
   pokemon,
 }: ModalDoCaraBomProps) {
-  //========== handle modal state ==========
-  function handleCloseEditPokemonModal() {
-    setIsOpen(false);
-  }
-  //========================================
+
+  const {handleCloseEditPokemonModal} = useEditPokemonModal()
 
   const { editPokemon, deletePokemon } = usePokemons();
   const [id, setId] = useState(pokemon.id);
