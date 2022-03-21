@@ -4,41 +4,18 @@
     flex-wrap: wrap;
     gap: 2rem;
     justify-content: center;
-    table {
-        width: 100%;
-        border-spacing: 0 0.5rem;
+    align-items: center;
 
-        th {
-            color: black;
-            font-weight: 400;
-            padding: 1rem 2rem;
-            text-align: left;
-            line-height: 1.5rem;
-        }
+    .warning-empty {
+        text-align: center;
 
-        td {
-            padding: 1rem 2rem;
-            border: 0;
-            background: var(--shape);
-            color: var(--text - body);
-            border-radius: 0.25rem;
+        strong {
+            text-decoration: underline;
+            transition: color 0.2s;
 
-            &:first-child {
-                color: red;
-            }
-        }
-
-        .warning-empty {
-            text-align: center;
-
-            strong {
-                text-decoration: underline;
-                transition: color 0.2s;
-
-                &:hover {
-                    cursor: pointer;
-                    color: darkgray;
-                }
+            &:hover {
+                cursor: pointer;
+                color: darkgray;
             }
         }
     }

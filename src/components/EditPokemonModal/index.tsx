@@ -59,7 +59,6 @@ export default function NewPokemonModal({
       className={`${styles.modal} ${active && styles.active}`}
       onClick={handleOutsideClick}
     >
-      <div className={styles.modal_wrapper}>
         <button
           type="button"
           onClick={handleCloseEditPokemonModal}
@@ -67,6 +66,7 @@ export default function NewPokemonModal({
         >
           <Image width={15} height={15} src="/images/close.svg" />
         </button>
+      <div className={styles.modal_wrapper}>
         <form className={styles.container} onSubmit={handleCreateNewPokemon}>
           <img src={imageUrl} alt="New pokemon image" />
           <input

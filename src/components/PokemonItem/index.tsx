@@ -3,6 +3,7 @@ import { usePokemons } from "../../Hooks/usePokemons";
 import { PokemonInterface } from "../../services/axios";
 import EditPokemonModal from "../EditPokemonModal";
 import { useState } from "react";
+import Image from "next/image";
 
 export function PokemonItem(pokemon: PokemonInterface) {
   const { height, id, imageUrl, name, types, weight } = pokemon;
@@ -25,7 +26,7 @@ export function PokemonItem(pokemon: PokemonInterface) {
     <section
     className={styles.item}
     key={id}>
-      <img width={150} src={imageUrl} alt={name + "image"}
+      <Image width={175} height={175} layout="fixed" src={imageUrl} alt={name + " image"}
     onClick = {handleOpenEditPokemonModal}
     />
     </section>

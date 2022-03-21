@@ -8,9 +8,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
 
-      <Header />
       <PokemonsProvider>
       <NewPokemonModalProvider>
+      <Header />
       <Component {...pageProps} />
       </NewPokemonModalProvider>
       </PokemonsProvider>

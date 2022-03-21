@@ -1,29 +1,16 @@
-import ModalDoCaraBom from "../components/ModalDoCaraBom"
-import NewPokemonModal from "../components/NewPokemonModal"
-import { PokemonsTable } from "../components/PokemonsTable"
-import { useNewPokemonModal } from "../Hooks/useNewPokemonModal"
-
-type Options  = typeof Options
-const Options = {
-
+import NewPokemonModal from "../components/NewPokemonModal";
+import { PokemonsTable } from "../components/PokemonsTable";
+import { useNewPokemonModal } from "../Hooks/useNewPokemonModal";
+import styles from "./pokemon.module.scss";
+import { MdOutlineLibraryAdd } from "react-icons/md";
+interface ManagementStates {
+  options: "add" | "remove" | "edit";
 }
 
-interface ManagementStates{
-    options: "add" | "remove" | "edit" 
-} 
-
-export default function Management (){
-
-    const { handleOpenNewPokemonModal, isOpen } = useNewPokemonModal();
-    console.log(isOpen)
-    return (
-        <div>
-             <button onClick={handleOpenNewPokemonModal}>NEW POKEMON</button>
-            <NewPokemonModal
-            active={isOpen}
-            />
-           <PokemonsTable/>
-        </div>
-
-    )
+export default function Management() {
+  return (
+    <div className={styles.container}>
+      <PokemonsTable />
+    </div>
+  );
 }

@@ -1,6 +1,6 @@
 .headerContainer {
     background-color: var(--header-bg);
-    padding: 0.25rem 0;
+    
     .headerContent {
         max-width: 1020px;
         height: 100%;
@@ -8,12 +8,10 @@
         padding: 0 2rem;
         display: flex;
         align-items: center;
-
-
         nav {
             margin-left: 5rem;
             height: 100%;
-
+    
             a {
                 display: inline-block;
                 position: relative;
@@ -21,11 +19,9 @@
                 height: 100%;
                 line-height: 5rem;
                 transition: color 0.2s;
-
-                &+a {
+                & + a{
                     margin-left: 2rem;
                 }
-
                 // &:hover {
                 //     color: var(--white);
                 // }
@@ -33,7 +29,6 @@
                     // color: var(--white);
                     font-weight: bold;
                 }
-
                 &.active::after {
                     content: '';
                     position: absolute;
@@ -41,14 +36,23 @@
                     width: 100%;
                     bottom: 1px;
                     left: 0;
-                    border-radius: 3px 3px 0 0;
+                    border-radius: 3px 3px 0 0 ;
                     // background-color: var(--yellow-500);
                 }
             }
         }
-
-        button {
+        button{
+            font-size: 32px;
+            color: white;
+            margin: 0;
             margin-left: auto;
+            background-color: transparent;
+            transition: all 0.2 ease-in-out;
+            border: 0;
+
+            &:hover{
+                filter: brightness(0.9);
+            }
         }
     }
 }

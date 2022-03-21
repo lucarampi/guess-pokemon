@@ -16,25 +16,25 @@
     &.active {
         display: flex;
     }
+
 }
 
 .modal_wrapper {
-    position: relative;
-    width: 100%;
-    max-width: 500px;
+    width: 500px;
     background: #FFF;
-    border-radius: 0.25rem;
+    border-radius: 0.5rem;
     padding: 2rem;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
+
     .close_modal {
-        position: absolute;
-        top: 0px;
-        right: 0px;
+        // position: absolute;
+        // top: 0px;
+        // right: 0px;
         padding: 0.5rem;
         cursor: pointer;
         background-color: transparent;
@@ -111,6 +111,7 @@
 
         &:hover {
             background-color: black;
+
             svg {
                 fill: white;
                 stroke: white;
