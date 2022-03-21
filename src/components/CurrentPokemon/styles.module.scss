@@ -12,7 +12,13 @@
         h2{
             font-size: larger;
         }
-        width: 200px;
+        width: 220px;
+    }
+    @media (max-width:500) {
+        h2{
+            font-size: larger;
+        }
+        width: 180px;
     }
     @media (max-width:440px) {
         h2{
@@ -22,6 +28,11 @@
       }
     .pokemonSilhouette {
         filter: brightness(0);
+        width: 100%;
+    }
+    img{
+        user-select: none;
+        pointer-events: none;
         width: 100%;
     }
 }

@@ -1,7 +1,5 @@
 import styles from "./styles.module.scss";
 import { PokemonInterface } from "../../services/axios";
-import { useState } from "react";
-import Image from "next/image";
 import { useEditPokemonModal } from "../../Hooks/useEditPokemonModal";
 
 export function PokemonItem(pokemon: PokemonInterface) {
@@ -18,10 +16,8 @@ export function PokemonItem(pokemon: PokemonInterface) {
         handleOpenEditPokemonModal();
       }}
     >
-      <Image
-        width={175}
-        height={175}
-        layout="fixed"
+      <img className={styles.image}
+
         src={imageUrl}
         alt={name + " image"}
       />

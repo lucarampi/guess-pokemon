@@ -5,7 +5,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { PokemonInterface } from '../../../services/axios'
 
 const POKEMON_COUNT = 151;
-const ENABLE_DATABASE_UPDATE = false;
+const ENABLE_DATABASE_UPDATE = true;
 
 interface PokeapiInterface {
   results: Array<PokeapiUrlInterface>
@@ -67,7 +67,7 @@ async function getFromattedPokemonsFromExternalApi(url: PokeapiUrlInterface[]) {
     const [type1,type2] = types.map((type) => type.type.name)
 
     const convertedHeight = height * 10 //convert decimeter to cm
-    const convertedWeight = weight * 10  //convert hetogram to gram
+    const convertedWeight = weight * 10  //convert hectogram to gram
     const formattedImageUrl = sprites.other['official-artwork']?.front_default
 
     const pokemonFormated: PokemonNoId = {

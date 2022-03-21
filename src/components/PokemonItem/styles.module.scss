@@ -32,6 +32,10 @@
         transform: scale(1.1);
     }
 
+    & .image {
+        width: 170px;
+    }
+
     &:hover img {
         animation: zoom-in-zoom-out 2s ease-in-out infinite;
     }

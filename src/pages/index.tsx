@@ -116,7 +116,7 @@ const Home: NextPage = () => {
             <select
               value={selectedId}
               name="pokemonSelect"
-              defaultValue={selectedPokemon.id}
+              defaultValue={selectedId}
               onChange={(ev) => {
                 setSelectedId(parseInt(ev.target.value, 10));
                 setSelectedPokemon(
@@ -128,7 +128,7 @@ const Home: NextPage = () => {
                 Select a pokemon here!
               </option>
               {_.sortBy(pokemons, ["name"], ["asc"]).map((pokemon) => (
-                <option value={pokemon.id}>{pokemon.name}</option>
+                <option key={pokemon.id} value={pokemon.id}>{pokemon.name}</option>
               ))}
             </select>
             <PokemonStats

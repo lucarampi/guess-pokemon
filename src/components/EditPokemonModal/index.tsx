@@ -1,4 +1,4 @@
-import { FormEvent, SyntheticEvent, useState } from "react";
+import { SyntheticEvent, useState } from "react";
 import styles from "./styles.module.scss";
 import Image from "next/image";
 import { PokemonInterface } from "../../services/axios";

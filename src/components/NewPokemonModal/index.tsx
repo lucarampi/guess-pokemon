@@ -3,7 +3,6 @@ import { useNewPokemonModal } from "../../Hooks/useNewPokemonModal";
 import styles from "./styles.module.scss";
 import { usePokemons } from "../../Hooks/usePokemons";
 import Image from "next/image";
-import { api } from "../../services/axios";
 
 interface ModalDoCaraBomProps {
   active: boolean;
