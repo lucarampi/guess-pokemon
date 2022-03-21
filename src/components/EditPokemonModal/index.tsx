@@ -14,7 +14,8 @@ export default function EditPokemonModal({
   active,
   pokemon,
 }: ModalDoCaraBomProps) {
-  const { handleCloseEditPokemonModal } = useEditPokemonModal();
+  const { handleCloseEditPokemonModal, handleResetEditPokemonModal } =
+    useEditPokemonModal();
 
   const { editPokemon, deletePokemon } = usePokemons();
   const [id, setId] = useState(pokemon.id);
@@ -47,6 +48,8 @@ export default function EditPokemonModal({
   }
   async function handleDeletePokemon(id: number) {
     deletePokemon(id);
+    handleCloseEditPokemonModal();
+    handleResetEditPokemonModal();
   }
 
   return (

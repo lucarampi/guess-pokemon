@@ -10,17 +10,20 @@ export function PokemonItem(pokemon: PokemonInterface) {
     useEditPokemonModal();
 
   return (
-    <section className={styles.container} key={id}>
+    <section
+      className={styles.container}
+      key={id}
+      onClick={() => {
+        setEditingPokemon(pokemon);
+        handleOpenEditPokemonModal();
+      }}
+    >
       <Image
         width={175}
         height={175}
         layout="fixed"
         src={imageUrl}
         alt={name + " image"}
-        onClick={() => {
-          setEditingPokemon(pokemon)
-          handleOpenEditPokemonModal();
-        }}
       />
       <p>
         <strong>{pokemon.name}</strong>
