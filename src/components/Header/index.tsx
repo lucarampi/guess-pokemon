@@ -8,6 +8,7 @@ import styles from "./styles.module.scss";
 export function Header() {
   const { handleOpenNewPokemonModal, isOpen } = useNewPokemonModal();
   const router = useRouter();
+
   return (
     <>
       <header className={styles.headerContainer}>
@@ -24,6 +25,7 @@ export function Header() {
             <a className={router.pathname == "/" ? styles.active : ""} href="/">
               Home
             </a>
+
             <a
               className={router.pathname == "/pokemons" ? styles.active : ""}
               href="/pokemons"
@@ -31,6 +33,7 @@ export function Header() {
               Pokemons
             </a>
           </nav>
+
           <button
             className={styles.add_button}
             onClick={handleOpenNewPokemonModal}
@@ -39,6 +42,7 @@ export function Header() {
           </button>
         </div>
       </header>
+
       <NewPokemonModal active={isOpen} />
     </>
   );

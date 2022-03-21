@@ -8,7 +8,7 @@ interface ModalProviderProps {
 interface EditPokemonModalContextData {
   handleOpenEditPokemonModal: () => void;
   handleCloseEditPokemonModal: () => void;
-  handleEditPokemonModal: () => void;
+  handleResetEditPokemonModal: () => void;
   isOpen: boolean;
   setEditingPokemon: (pokemon: PokemonInterface) => void;
   editingPokemon: PokemonInterface;
@@ -21,7 +21,23 @@ const EditPokemonModalContext = createContext<EditPokemonModalContextData>(
 export function EditPokemonModalProvider({ children }: ModalProviderProps) {
   //========== handle modal state ==========
   const [isOpen, setIsOpen] = useState(false);
-  const [editingPokemon, setEditingPokemon] = useState({} as PokemonInterface);
+  const defaultPokemon = () => {
+    return {
+      height: 0,
+      weight: 0,
+      id: 0,
+      imageUrl: "",
+      name: "",
+      types: {
+        type1: "",
+        type2: "",
+      },
+    } as PokemonInterface
+  };
+  const [editingPokemon, setEditingPokemon] = useState(defaultPokemon);
+  function handleResetEditPokemonModal() {
+    setEditingPokemon(defaultPokemon);
+  }
 
   function handleOpenEditPokemonModal() {
     setIsOpen(true);
@@ -39,6 +55,7 @@ export function EditPokemonModalProvider({ children }: ModalProviderProps) {
         isOpen,
         setEditingPokemon,
         editingPokemon,
+        handleResetEditPokemonModal,
       }}
     >
       {children}

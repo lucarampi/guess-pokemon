@@ -8,7 +8,7 @@ export default function Management() {
   return (
     <div>
       <PokemonsTable />
-      {editingPokemon && <EditPokemonModal active={isOpen} pokemon={editingPokemon} />}
+      {isOpen && <EditPokemonModal active={isOpen} pokemon={editingPokemon} />}
     </div>
   );
 }

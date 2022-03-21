@@ -5,10 +5,9 @@ import Image from "next/image";
 import { useEditPokemonModal } from "../../Hooks/useEditPokemonModal";
 
 export function PokemonItem(pokemon: PokemonInterface) {
-  const { height, id, imageUrl, name, types, weight } = pokemon;
-  const [isOpen, setIsOpen] = useState(false);
-  const {handleOpenEditPokemonModal, setEditingPokemon} = useEditPokemonModal()
-  setEditingPokemon(pokemon)
+  const { id, imageUrl, name } = pokemon;
+  const { handleOpenEditPokemonModal, setEditingPokemon } =
+    useEditPokemonModal();
 
   return (
     <section className={styles.container} key={id}>
@@ -18,7 +17,10 @@ export function PokemonItem(pokemon: PokemonInterface) {
         layout="fixed"
         src={imageUrl}
         alt={name + " image"}
-        onClick={handleOpenEditPokemonModal}
+        onClick={() => {
+          setEditingPokemon(pokemon)
+          handleOpenEditPokemonModal();
+        }}
       />
       <p>
         <strong>{pokemon.name}</strong>

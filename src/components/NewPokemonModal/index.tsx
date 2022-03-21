@@ -66,8 +66,10 @@ export default function NewPokemonModal({ active }: ModalDoCaraBomProps) {
         >
           <Image width={15} height={15} src="/images/close.svg" />
         </button>
+
         <form className={styles.container} onSubmit={hadleCreateNewPokemon}>
           <img src={imageUrl} alt="New pokemon image" />
+
           <input
             type="text"
             placeholder="Pokemon's image (URL)"
@@ -85,6 +87,7 @@ export default function NewPokemonModal({ active }: ModalDoCaraBomProps) {
             value={name}
             onChange={(event) => setName(event.target.value)}
           />
+
           <div className={styles.two_items_container}>
             <input
               type="number"

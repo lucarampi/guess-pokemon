@@ -4,7 +4,7 @@ interface LifesProps {
   lifes: number;
 }
 
-export function Lifes({lifes}: LifesProps) {
+export function Lifes({ lifes }: LifesProps) {
   return (
     <div className={styles.lifes}>
       {Array(lifes)
