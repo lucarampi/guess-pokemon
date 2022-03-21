@@ -9,9 +9,7 @@ export function PokemonItem(pokemon: PokemonInterface) {
   const { height, id, imageUrl, name, types, weight } = pokemon;
   const [isOpen, setIsOpen] = useState(false)
   const { deletePokemon } = usePokemons();
-  function handleDeleteItem(id: number) {
-    deletePokemon(id);
-  }
+
   function handleOpenEditPokemonModal(){
     setIsOpen(true)
   }
