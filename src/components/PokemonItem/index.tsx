@@ -22,11 +22,12 @@ export function PokemonItem(pokemon: PokemonInterface) {
     pokemon = {pokemon}
     />
     <section
-    className={styles.item}
+    className={styles.container}
     key={id}>
       <Image width={175} height={175} layout="fixed" src={imageUrl} alt={name + " image"}
     onClick = {handleOpenEditPokemonModal}
     />
+    <p><strong>{pokemon.name}</strong></p>
     </section>
     </>
   );
