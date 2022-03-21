@@ -39,8 +39,9 @@
         cursor: pointer;
         background-color: transparent;
         border: none;
-        transition: all 0.2s ease-in-out;
-        &:hover{
+        transition: all 0.15s ease-in-out;
+
+        &:hover {
             filter: opacity(0.7)
         }
     }
@@ -73,26 +74,60 @@
         }
     }
 
-    button[type="submit"] {
+    button[type="submit"],
+    .delete_button {
         width: 100%;
         padding: 0 1.5rem;
         height: 4rem;
-        background: red;
-        color: #FFF;
         border: 0;
         border-radius: 0.25rem;
-        font-size: 1rem;
-        font-weight: 600;
         margin-top: 1rem;
-        transition: filter 0.2s;
+        transition: all 0.25s ease-in-out;
+    }
+
+    .submit_button {
+        color: #FFF;
+        background: red;
+        font-size: 1.25rem;
+        font-weight: 600;
+
         &:hover {
-            filter: brightness(90%);
+            background-color: rgb(175, 0, 0);
+            color: whitesmoke;
         }
     }
+
+    .delete_button {
+        padding: 0.75rem;
+        background-color: lightgray;
+
+        svg {
+            height: 100%;
+            fill: black;
+            stroke: black;
+            stroke-width: 7px;
+            transition: all 0.3s;
+        }
+
+        &:hover {
+            background-color: black;
+            svg {
+                fill: white;
+                stroke: white;
+            }
+        }
+    }
+
 
     .two_items_container {
         display: grid;
         grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+    }
+
+    .buttons_container {
+        display: grid;
+        grid-template-columns: 1fr 4fr;
         gap: 0.5rem;
     }
 }

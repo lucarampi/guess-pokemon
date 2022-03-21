@@ -8,7 +8,7 @@ interface PokemonProps extends PokemonInterface {
 export function GuessedPokemon(pokemon: PokemonProps){
     
     return(
-          <div>
+          <div className={styles.container}>
             <h2>{pokemon.name}</h2>
             <img
               width={200 + "px"}

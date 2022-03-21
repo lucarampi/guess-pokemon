@@ -2,9 +2,10 @@
     max-width: 1120px;
     margin: 0 auto;
     padding: 0 2rem;
-    display: flex;
     align-items: center;
     justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
 }
 
 .gameStart {
@@ -30,8 +31,8 @@
     }
 }
 
-.gameInterface{
-    max-width: 300px;
+.gameStats{
+    width:100%;
     display: flex;
     flex-direction: column;
     justify-content: center;

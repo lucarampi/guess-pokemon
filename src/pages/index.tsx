@@ -111,7 +111,7 @@ const Home: NextPage = () => {
 
       {randomPokemon && selectedPokemon && gameState.start && (
         <>
-          <section key={randomPokemon.name} className={styles.gameInterface}>
+          <section key={randomPokemon.name} className={styles.gameStats}>
             <h2>Choose a pokemon:</h2>
             <select
               value={selectedId}
@@ -137,6 +137,7 @@ const Home: NextPage = () => {
             />
             <Lifes lifes={gameState.lifes} />
           </section>
+
           <GuessedPokemon {...selectedPokemon} />
         </>
       )}
