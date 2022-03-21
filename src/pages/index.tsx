@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import { GuessedPokemon } from "../components/GuessedPokemon";
 import { PokemonStats } from "../components/PokemonStats";
 import { CurrentPokemon } from "../components/CurrentPokemon";
-import { Lifes } from "../components/Lifes";
 import { usePokemons } from "../Hooks/usePokemons";
 
 interface gameState {
@@ -23,9 +22,7 @@ const Home: NextPage = () => {
     return (pokemons && _.sample(pokemons)) || ({} as PokemonInterface);
   });
   const [selectedPokemon, setSelectedPokemon] = useState<PokemonInterface>(
-    () => {
-      return pokemons && (_.sample(pokemons) || ({} as PokemonInterface));
-    }
+    generateDefaultPokemon
   );
   const [selectedId, setSelectedId] = useState(selectedPokemon.id);
   const [gameState, setGameState] = useState<gameState>({
@@ -34,6 +31,18 @@ const Home: NextPage = () => {
     win: false,
     lose: false,
   });
+
+  function generateDefaultPokemon():PokemonInterface{
+    return {
+      id: -1,
+      name: "Select a Pokemon",
+      imageUrl:
+        "https://www.freeiconspng.com/thumbs/pokeball-png/pokeball-transparent-png-2.png",
+      types: { type1: "", type2: "" },
+      height: 0,
+      weight: 0,
+    }
+  }
 
   function generateNewRandomPokemon() {
     setRandomPokemon(_.sample(pokemons));
@@ -91,15 +100,7 @@ const Home: NextPage = () => {
         <div className={styles.gameStart}>
           <button
             onClick={() => {
-              setSelectedPokemon({
-                id: -1,
-                name: "Select a Pokemon",
-                imageUrl:
-                  "https://www.freeiconspng.com/thumbs/pokeball-png/pokeball-transparent-png-2.png",
-                types: { type1: "", type2: "" },
-                height: 0,
-                weight: 0,
-              });
+              setSelectedPokemon(generateDefaultPokemon);
               generateNewRandomPokemon();
             }}
           >
@@ -112,11 +113,10 @@ const Home: NextPage = () => {
       {randomPokemon && selectedPokemon && gameState.start && (
         <>
           <section key={randomPokemon.name} className={styles.gameStats}>
-            <h2>Choose a pokemon:</h2>
             <select
               value={selectedId}
               name="pokemonSelect"
-              defaultValue={-1}
+              defaultValue={selectedPokemon.id}
               onChange={(ev) => {
                 setSelectedId(parseInt(ev.target.value, 10));
                 setSelectedPokemon(
@@ -125,17 +125,17 @@ const Home: NextPage = () => {
               }}
             >
               <option value={-1} disabled hidden>
-                Choose here
+                Select a pokemon here!
               </option>
-              {pokemons.map((pokemon) => (
+              {_.sortBy(pokemons, ["name"], ["asc"]).map((pokemon) => (
                 <option value={pokemon.id}>{pokemon.name}</option>
               ))}
             </select>
             <PokemonStats
               selectedPokemon={selectedPokemon}
               randomPokemon={randomPokemon}
+              lifes={gameState.lifes}
             />
-            <Lifes lifes={gameState.lifes} />
           </section>
 
           <GuessedPokemon {...selectedPokemon} />

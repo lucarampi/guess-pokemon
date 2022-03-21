@@ -1,53 +1,54 @@
 .headerContainer {
-    height: 5rem;
-    border-bottom: 1px solid var(--header-border);
     background-color: var(--header-bg);
-}
-.headerContent {
-    width: 1020px;
-    height: 100%;
-    margin: 0 auto;
-    padding: 0 2rem;
-    display: flex;
-    align-items: center;
-
-    nav {
-        margin-left: 5rem;
+    padding: 0.25rem 0;
+    .headerContent {
+        max-width: 1020px;
         height: 100%;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        align-items: center;
 
-        a {
-            display: inline-block;
-            position: relative;
-            padding: 0 0.5rem;
+
+        nav {
+            margin-left: 5rem;
             height: 100%;
-            line-height: 5rem;
-            color: var(--gray-300);
-            transition: color 0.2s;
 
-            & + a{
-                margin-left: 2rem;
-            }
+            a {
+                display: inline-block;
+                position: relative;
+                padding: 0 0.5rem;
+                height: 100%;
+                line-height: 5rem;
+                transition: color 0.2s;
 
-            &:hover {
-                color: var(--white);
-            }
-            &.active {
-                color: var(--white);
-                font-weight: bold;
-            }
-            &.active::after {
-                content: '';
-                position: absolute;
-                height: 3px;
-                width: 100%;
-                bottom: 1px;
-                left: 0;
-                border-radius: 3px 3px 0 0 ;
-                background-color: var(--yellow-500);
+                &+a {
+                    margin-left: 2rem;
+                }
+
+                // &:hover {
+                //     color: var(--white);
+                // }
+                &.active {
+                    // color: var(--white);
+                    font-weight: bold;
+                }
+
+                &.active::after {
+                    content: '';
+                    position: absolute;
+                    height: 3px;
+                    width: 100%;
+                    bottom: 1px;
+                    left: 0;
+                    border-radius: 3px 3px 0 0;
+                    // background-color: var(--yellow-500);
+                }
             }
         }
-    }
-    button{
-        margin-left: auto;
+
+        button {
+            margin-left: auto;
+        }
     }
 }

@@ -58,7 +58,7 @@ export function PokemonsProvider({ children }: PokemonsProviderProps) {
     async function getPokemons() {
       const response = await api.get(`/pokemons/data`);
       const updatedPokemons = response.data;
-      Promise.all(updatedPokemons)
+      // Promise.all(updatedPokemons)
       setPokemons([...updatedPokemons]);
       return updatedPokemons;
     }

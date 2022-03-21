@@ -1,12 +1,13 @@
 import { PokemonInterface } from "../../services/axios";
 import styles from "./styles.module.scss";
+import Image from "next/image";
 
 interface PokemonProps extends PokemonInterface {}
 
 export function CurrentPokemon(pokemon: PokemonProps) {
   return (
     <div className={styles.container}>
-      <h2>{pokemon.name}</h2>
+      <h2>Who's this Pokemon?"</h2>
 
       {/* <div className={styles.pokemonDisplay}>
         <img
@@ -16,12 +17,9 @@ export function CurrentPokemon(pokemon: PokemonProps) {
           alt={"Backgound image"}
         />
       </div> */}
-        <img
-          className={styles.pokemonSilhouette}
-          width={200 + "px"}
-          src={pokemon.imageUrl}
-          alt={pokemon.name + " image"}
-        />
+      <div className={styles.pokemonSilhouette}>
+        <Image width={200} height={200} layout="responsive" className={styles.image} src={pokemon.imageUrl} alt={pokemon.name + " image"} />
+      </div>
     </div>
   );
 }

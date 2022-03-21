@@ -1,7 +1,26 @@
 .container{
-    width: 100%;
+    text-align: center;
+    width: 300px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    grid-area: guess;
+
+    @media (max-width:600px) {
+        h2{
+            font-size: larger;
+        }
+        width: 200px;
+    }
+    @media (max-width:440px) {
+        h2{
+            font-size: medium;
+        }
+        width: 100px;
+      }
+    img{
+        width:100%;
+    }
 }

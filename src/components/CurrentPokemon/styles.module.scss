@@ -1,25 +1,28 @@
-
-
-.pokemonDisplay {
-
-    .pokemonBackground{
-        position: relative;
-        border: 5px solid;
-        border-radius: 1rem;
-        width: 100%;
-    }
-
-    .pokemonSilhouette {
-        filter: brightness(0);
-        // position: absolute;
-        // top: 175px;
-        // left: 185px;
-    }
-}
-
 .container {
+    text-align: center;
+    width: 300px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    grid-area: random;
+
+    @media (max-width:600px) {
+        h2{
+            font-size: larger;
+        }
+        width: 200px;
+    }
+    @media (max-width:440px) {
+        h2{
+            font-size: medium;
+        }
+        width: 100px;
+      }
+    .pokemonSilhouette {
+        filter: brightness(0);
+        width: 100%;
+
+    }
 }

@@ -1,13 +1,24 @@
-.stats{
-    text-align: center;
-    width: 100%;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    background-image: url("/images/dialog_frame_formated.png");
-    background-repeat: no-repeat;
-    background-attachment: local;
-    background-position: center;
-    background-size: contain;
+.stats {
+  text-align: center;
+  width: 560px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 
+  padding: 0.75rem 0 1.75rem;
+
+  background-image: url("/images/dialog_frame_formated.png");
+  background-repeat: no-repeat;
+  background-attachment: local;
+  background-position: center;
+  background-size: contain;
+
+  @media (max-width:560px) {
+    width: 420px;
+    line-height: 16px;
   }
+  @media (max-width:440px) {
+    width: 300px;
+    line-height: 5px;
+  }
+}

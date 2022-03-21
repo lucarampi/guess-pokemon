@@ -1,18 +1,40 @@
 .contentContainer {
-    max-width: 1120px;
+    max-width: 1920px;
     margin: 0 auto;
     padding: 0 2rem;
-    align-items: center;
-    justify-content: space-between;
     display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
+    
+    justify-content: space-evenly;
+    justify-items: center;
+    align-content: space-evenly;
+    align-items: center;
+
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas:
+        "start start start start"
+        "random stats stats guess";
+
+    overflow: hidden;
+
+    @media (max-width:1180px) {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas:
+            "start start"
+            "random guess"
+            "stats stats";
+    }
 }
 
 .gameStart {
     width: 100%;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
+    grid-area: start;
+
+
     button {
         font-size: larger;
         margin-top: 5rem;
@@ -25,20 +47,44 @@
         color: rgb(36, 25, 0);
         font-weight: bold;
         transition: filter 0.2s;
+
         &:hover {
             filter: brightness(0.9);
         }
     }
 }
 
-.gameStats{
-    width:100%;
+.gameStats {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    grid-area: stats;
+
     select {
-        width: 100%;
+        width: 500px;
+        margin: 0.5rem 0;
+        padding: 1rem;
+        grid-area: stats;
+
+        border: 2px solid whitesmoke;
+        border-radius: 1rem;
+
+        background-color: white;
+        transition: all 0.2s ease-in-out;
+        text-transform: capitalize;
+
+        @media (max-width:580px) {
+            width: 70%;
+        }
+
+        &:hover {
+            background-color: whitesmoke;
+        }
+
+        option {
+            background-color: white;
+            margin: 50px;
+        }
     }
 }
