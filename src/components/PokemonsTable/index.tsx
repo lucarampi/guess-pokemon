@@ -1,16 +1,19 @@
 // import { useNewPokemonModal } from "../../Hooks/useNewPokemonModal";
 import { useNewPokemonModal } from "../../Hooks/useNewPokemonModal";
 import { usePokemons } from "../../Hooks/usePokemons";
+import LoadingPokeball from "../LoadingPokeball";
 import { PokemonItem } from "../PokemonItem";
 import styles from "./styles.module.scss";
 
 export default function PokemonsTable() {
-  const { pokemons } = usePokemons();
+  const { pokemons, isLoading } = usePokemons();
   const { handleOpenNewPokemonModal } = useNewPokemonModal();
-  
+
   return (
     <div className={styles.container}>
-      {pokemons.length > 0 ? (
+      {isLoading ? (
+        <LoadingPokeball />
+      ) : pokemons.length > 0 ? (
         pokemons.map((pokemon) => <PokemonItem key={pokemon.id} {...pokemon} />)
       ) : (
         <div className={styles.warning_empty}>

@@ -14,11 +14,12 @@ interface PokemonsProviderProps {
 }
 
 interface PokemonsContextData {
-  pokemons: PokemonInterface[];
   createPokemon: (pokemon: PokemonInterface) => Promise<void>;
   deletePokemon: (id: number) => Promise<void>;
   getPokemons: () => Promise<PokemonInterface[]>;
-  editPokemon: (pokemon:PokemonInterface) => Promise<void>;
+  editPokemon: (pokemon: PokemonInterface) => Promise<void>;
+  pokemons: PokemonInterface[];
+  isLoading: boolean;
 }
 
 const PokemonsContext = createContext<PokemonsContextData>(
@@ -27,8 +28,10 @@ const PokemonsContext = createContext<PokemonsContextData>(
 
 export function PokemonsProvider({ children }: PokemonsProviderProps) {
   const [pokemons, setPokemons] = useState<PokemonInterface[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
-    getPokemons()     
+    getPokemons();
   }, []);
 
   //request api to create new Pokemon
@@ -54,15 +57,18 @@ export function PokemonsProvider({ children }: PokemonsProviderProps) {
     setPokemons([...updatedPokemons]);
   }
 
-    //request api to get all Pokemons
-    async function getPokemons() {
-      const response = await api.get(`/pokemons/data`);
-      const updatedPokemons = response.data;
-      // Promise.all(updatedPokemons)
-      setPokemons([...updatedPokemons]);
-      return updatedPokemons;
-    }
-  
+  //request api to get all Pokemons
+  async function getPokemons() {
+    setIsLoading(true)
+    const response = await api.get(`/pokemons/data`);
+    const updatedPokemons = response.data;
+    setPokemons([...updatedPokemons]);
+    setIsLoading((oldValue)=> !oldValue)
+    Promise.all(updatedPokemons)
+    console.log(updatedPokemons)
+
+    return [];
+  }
 
   return (
     <PokemonsContext.Provider
@@ -71,7 +77,8 @@ export function PokemonsProvider({ children }: PokemonsProviderProps) {
         createPokemon,
         deletePokemon,
         getPokemons,
-        editPokemon
+        editPokemon,
+        isLoading
       }}
     >
       {children}

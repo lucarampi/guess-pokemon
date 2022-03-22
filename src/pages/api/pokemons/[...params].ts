@@ -64,7 +64,7 @@ async function getFromattedPokemonsFromExternalApi(url: PokeapiUrlInterface[]) {
 
     const { types, height, weight, name, sprites } = data
 
-    const [type1,type2] = types.map((type) => type.type.name)
+    const [type1, type2] = types.map((type) => type.type.name)
 
     const convertedHeight = height * 10 //convert decimeter to cm
     const convertedWeight = weight * 10  //convert hectogram to gram
@@ -122,11 +122,16 @@ const updatePokemonDatabase = async () => {
 }
 
 const getAllPokemons = async () => {
-  const { data, error } = await supabase
-    .from("pokemons")
-    .select("*")
+  try {
+    const { data, error } = await supabase
+      .from("pokemons")
+      .select("*")
+    return data as PokemonInterface[]
+    
+  } catch (error) {
+    console.log(error)
+  }
 
-  return data as PokemonInterface[]
 }
 
 const getRows = async () => {
@@ -156,14 +161,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(200).json(await getAllPokemons())
   }
   else if (req.method === 'POST') {
-    const {height, name, types, weight, imageUrl } = req.body
-    const newPokemon:PokemonNoId = { height, name, types, weight, imageUrl }
+    const { height, name, types, weight, imageUrl } = req.body
+    const newPokemon: PokemonNoId = { height, name, types, weight, imageUrl }
     await registerPokemon(newPokemon)
     res.status(200).json(await getAllPokemons())
   }
   else if (req.method === 'PUT') {
 
-    const {id, height, name, types, weight, imageUrl } = req.body
+    const { id, height, name, types, weight, imageUrl } = req.body
     const newPokemon: PokemonNoId = { height, name, types, weight, imageUrl }
     await supabase.from("pokemons")
       .update(newPokemon)

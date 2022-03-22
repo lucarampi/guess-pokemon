@@ -8,6 +8,7 @@ import { GuessedPokemon } from "../components/GuessedPokemon";
 import { PokemonStats } from "../components/PokemonStats";
 import { CurrentPokemon } from "../components/CurrentPokemon";
 import { usePokemons } from "../Hooks/usePokemons";
+import Sound from 'react-sound'
 
 interface gameState {
   lifes: number;
@@ -17,6 +18,7 @@ interface gameState {
 }
 
 const Home: NextPage = () => {
+  const [isPlaying, setIsPlaying] = useState(false);
   const { pokemons } = usePokemons();
   const [randomPokemon, setRandomPokemon] = useState<PokemonInterface>(() => {
     return (pokemons && _.sample(pokemons)) || ({} as PokemonInterface);
@@ -31,8 +33,7 @@ const Home: NextPage = () => {
     win: false,
     lose: false,
   });
-
-  function generateDefaultPokemon():PokemonInterface{
+  function generateDefaultPokemon(): PokemonInterface {
     return {
       id: -1,
       name: "Select a Pokemon",
@@ -41,9 +42,8 @@ const Home: NextPage = () => {
       types: { type1: "", type2: "" },
       height: 0,
       weight: 0,
-    }
+    };
   }
-
   function generateNewRandomPokemon() {
     setRandomPokemon(_.sample(pokemons));
     setGameState({
@@ -54,7 +54,6 @@ const Home: NextPage = () => {
       win: false,
     });
   }
-
   useEffect(() => {
     if (selectedPokemon?.id === randomPokemon?.id && gameState.start) {
       setGameState({ ...gameState, start: false, win: true });
@@ -75,7 +74,6 @@ const Home: NextPage = () => {
       }
     }
   }, [selectedId]);
-
   useEffect(() => {
     if (gameState.lose) {
       alert("You lose!");
@@ -90,6 +88,11 @@ const Home: NextPage = () => {
 
   return (
     <div className={styles.contentContainer}>
+      <Sound
+      url="/audios/audio.mp3"
+      playStatus={isPlaying? "PLAYING" : "STOPPED"}
+
+      />
       <Head>
         <title>Guess Pokemon</title>
         <link rel="icon" href="/favicon.ico" />
@@ -100,6 +103,7 @@ const Home: NextPage = () => {
         <div className={styles.gameStart}>
           <button
             onClick={() => {
+              setIsPlaying(true)
               setSelectedPokemon(generateDefaultPokemon);
               generateNewRandomPokemon();
             }}
@@ -128,7 +132,9 @@ const Home: NextPage = () => {
                 Select a pokemon here!
               </option>
               {_.sortBy(pokemons, ["name"], ["asc"]).map((pokemon) => (
-                <option key={pokemon.id} value={pokemon.id}>{pokemon.name}</option>
+                <option key={pokemon.id} value={pokemon.id}>
+                  {pokemon.name}
+                </option>
               ))}
             </select>
             <PokemonStats
