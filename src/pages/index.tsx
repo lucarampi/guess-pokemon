@@ -18,7 +18,9 @@ interface gameState {
 
 const Home: NextPage = () => {
   // const [sound] = useState(new Audio("/audios/audio.mp3"));
-  const [sound] = useState(typeof Audio !== "undefined" && new Audio("/audios/audio.mp3"))
+  const [sound] = useState(
+    typeof Audio !== "undefined" && new Audio("/audios/audio.mp3")
+  );
   const { pokemons } = usePokemons();
   const [randomPokemon, setRandomPokemon] = useState<PokemonInterface>(() => {
     return (pokemons && _.sample(pokemons)) || ({} as PokemonInterface);
@@ -88,62 +90,63 @@ const Home: NextPage = () => {
   }, [gameState]);
 
   return (
-    <div className={styles.contentContainer}>
-      <Head>
-        <title>Guess Pokemon</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      {randomPokemon && gameState.start ? (
-        <CurrentPokemon {...randomPokemon} />
-      ) : (
-        <div className={styles.gameStart}>
-          <button
-            onClick={() => {
-              setSelectedPokemon(generateDefaultPokemon);
-              generateNewRandomPokemon();
-              sound.play()
-            }}
-          >
-            {" "}
-            Start New Game
-          </button>
-        </div>
-      )}
-
-      {randomPokemon && selectedPokemon && gameState.start && (
-        <>
-          <section key={randomPokemon.name} className={styles.gameStats}>
-            <select
-              value={selectedId}
-              name="pokemonSelect"
-              defaultValue={selectedId}
-              onChange={(ev) => {
-                setSelectedId(parseInt(ev.target.value, 10));
-                setSelectedPokemon(
-                  _.find(pokemons, (p) => p.id === Number(ev.target.value))
-                );
+    <div className={styles.wrapper}>
+      <div className={styles.container}>
+        <Head>
+          <title>Guess Pokemon</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        {randomPokemon && gameState.start ? (
+          <CurrentPokemon {...randomPokemon} />
+        ) : (
+          <div className={styles.gameStart}>
+            <button
+              onClick={() => {
+                setSelectedPokemon(generateDefaultPokemon);
+                generateNewRandomPokemon();
+                sound.play();
               }}
             >
-              <option value={-1} disabled hidden>
-                Select a pokemon here!
-              </option>
-              {_.sortBy(pokemons, ["name"], ["asc"]).map((pokemon) => (
-                <option key={pokemon.id} value={pokemon.id}>
-                  {pokemon.name}
-                </option>
-              ))}
-            </select>
-            <PokemonStats
-              selectedPokemon={selectedPokemon}
-              randomPokemon={randomPokemon}
-              lifes={gameState.lifes}
-            />
-          </section>
+              {" "}
+              Start New Game
+            </button>
+          </div>
+        )}
 
-          <GuessedPokemon {...selectedPokemon} />
-        </>
-      )}
-      <div></div>
+        {randomPokemon && selectedPokemon && gameState.start && (
+          <>
+            <section key={randomPokemon.name} className={styles.gameStats}>
+              <select
+                value={selectedId}
+                name="pokemonSelect"
+                defaultValue={selectedId}
+                onChange={(ev) => {
+                  setSelectedId(parseInt(ev.target.value, 10));
+                  setSelectedPokemon(
+                    _.find(pokemons, (p) => p.id === Number(ev.target.value))
+                  );
+                }}
+              >
+                <option value={-1} disabled hidden>
+                  Select a pokemon here!
+                </option>
+                {_.sortBy(pokemons, ["name"], ["asc"]).map((pokemon) => (
+                  <option key={pokemon.id} value={pokemon.id}>
+                    {pokemon.name}
+                  </option>
+                ))}
+              </select>
+              <PokemonStats
+                selectedPokemon={selectedPokemon}
+                randomPokemon={randomPokemon}
+                lifes={gameState.lifes}
+              />
+            </section>
+
+            <GuessedPokemon {...selectedPokemon} />
+          </>
+        )}
+      </div>
     </div>
   );
 };

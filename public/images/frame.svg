@@ -1,0 +1,164 @@
+<svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_1_130)">
+<rect x="4" width="2" height="2" fill="black"/>
+<rect x="4" y="2" width="2" height="2" fill="white"/>
+<rect x="2" y="6" width="2" height="2" fill="white"/>
+<rect x="4" y="6" width="2" height="2" fill="white"/>
+<rect x="6" y="6" width="2" height="2" fill="white"/>
+<rect x="8" y="6" width="2" height="2" fill="white"/>
+<rect x="6" y="8" width="2" height="2" fill="white"/>
+<rect x="4" y="8" width="2" height="2" fill="white"/>
+<rect x="6" y="2" width="2" height="2" fill="#FF0000"/>
+<rect x="8" y="4" width="2" height="2" fill="#FF0000"/>
+<rect x="6" y="4" width="2" height="2" fill="#FF0000"/>
+<rect x="4" y="4" width="2" height="2" fill="#FF0000"/>
+<rect x="2" y="4" width="2" height="2" fill="#FF0000"/>
+<rect x="2" y="2" width="2" height="2" fill="black"/>
+<rect y="4" width="2" height="2" fill="black"/>
+<rect y="6" width="2" height="2" fill="black"/>
+<rect x="2" y="8" width="2" height="2" fill="black"/>
+<rect x="4" y="10" width="2" height="2" fill="black"/>
+<rect x="6" y="10" width="2" height="2" fill="black"/>
+<rect x="8" y="8" width="2" height="2" fill="black"/>
+<rect x="10" y="10" width="2" height="2" fill="black"/>
+<rect x="12" y="8" width="2" height="2" fill="black"/>
+<rect x="12" y="2" width="2" height="2" fill="black"/>
+<rect x="8" y="12" width="2" height="2" fill="black"/>
+<rect x="2" y="12" width="2" height="2" fill="black"/>
+<rect x="10" y="6" width="2" height="2" fill="black"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 10 6)" fill="black"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 8 4)" fill="black"/>
+<rect x="6" width="2" height="2" fill="black"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 38 0)" fill="black"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 38 2)" fill="white"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 40 6)" fill="white"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 38 6)" fill="white"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 36 6)" fill="white"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 34 6)" fill="white"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 36 8)" fill="white"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 38 8)" fill="white"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 36 2)" fill="#FF0000"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 34 4)" fill="#FF0000"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 36 4)" fill="#FF0000"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 38 4)" fill="#FF0000"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 40 4)" fill="#FF0000"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 40 2)" fill="black"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 42 4)" fill="black"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 42 6)" fill="black"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 40 8)" fill="black"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 38 10)" fill="black"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 36 10)" fill="black"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 34 8)" fill="black"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 32 10)" fill="black"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 30 8)" fill="black"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 30 2)" fill="black"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 34 12)" fill="black"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 40 12)" fill="black"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 32 6)" fill="black"/>
+<rect x="32" y="6" width="2" height="2" transform="rotate(180 32 6)" fill="black"/>
+<rect x="34" y="4" width="2" height="2" transform="rotate(180 34 4)" fill="black"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 36 0)" fill="black"/>
+<rect x="38" y="42" width="2" height="2" transform="rotate(-180 38 42)" fill="black"/>
+<rect x="38" y="40" width="2" height="2" transform="rotate(-180 38 40)" fill="white"/>
+<rect x="40" y="36" width="2" height="2" transform="rotate(-180 40 36)" fill="white"/>
+<rect x="38" y="36" width="2" height="2" transform="rotate(-180 38 36)" fill="white"/>
+<rect x="36" y="36" width="2" height="2" transform="rotate(-180 36 36)" fill="white"/>
+<rect x="34" y="36" width="2" height="2" transform="rotate(-180 34 36)" fill="white"/>
+<rect x="36" y="34" width="2" height="2" transform="rotate(-180 36 34)" fill="white"/>
+<rect x="38" y="34" width="2" height="2" transform="rotate(-180 38 34)" fill="white"/>
+<rect x="36" y="40" width="2" height="2" transform="rotate(-180 36 40)" fill="#FF0000"/>
+<rect x="34" y="38" width="2" height="2" transform="rotate(-180 34 38)" fill="#FF0000"/>
+<rect x="36" y="38" width="2" height="2" transform="rotate(-180 36 38)" fill="#FF0000"/>
+<rect x="38" y="38" width="2" height="2" transform="rotate(-180 38 38)" fill="#FF0000"/>
+<rect x="40" y="38" width="2" height="2" transform="rotate(-180 40 38)" fill="#FF0000"/>
+<rect x="40" y="40" width="2" height="2" transform="rotate(-180 40 40)" fill="black"/>
+<rect x="42" y="38" width="2" height="2" transform="rotate(-180 42 38)" fill="black"/>
+<rect x="42" y="36" width="2" height="2" transform="rotate(-180 42 36)" fill="black"/>
+<rect x="40" y="34" width="2" height="2" transform="rotate(-180 40 34)" fill="black"/>
+<rect x="38" y="32" width="2" height="2" transform="rotate(-180 38 32)" fill="black"/>
+<rect x="36" y="32" width="2" height="2" transform="rotate(-180 36 32)" fill="black"/>
+<rect x="34" y="34" width="2" height="2" transform="rotate(-180 34 34)" fill="black"/>
+<rect x="32" y="32" width="2" height="2" transform="rotate(-180 32 32)" fill="black"/>
+<rect x="30" y="34" width="2" height="2" transform="rotate(-180 30 34)" fill="black"/>
+<rect x="30" y="40" width="2" height="2" transform="rotate(-180 30 40)" fill="black"/>
+<rect x="34" y="30" width="2" height="2" transform="rotate(-180 34 30)" fill="black"/>
+<rect x="40" y="30" width="2" height="2" transform="rotate(-180 40 30)" fill="black"/>
+<rect x="32" y="36" width="2" height="2" transform="rotate(-180 32 36)" fill="black"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 32 36)" fill="black"/>
+<rect width="2" height="2" transform="matrix(-1 0 0 1 34 38)" fill="black"/>
+<rect x="36" y="42" width="2" height="2" transform="rotate(-180 36 42)" fill="black"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 4 42)" fill="black"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 4 40)" fill="white"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 2 36)" fill="white"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 4 36)" fill="white"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 6 36)" fill="white"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 8 36)" fill="white"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 6 34)" fill="white"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 4 34)" fill="white"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 6 40)" fill="#FF0000"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 8 38)" fill="#FF0000"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 6 38)" fill="#FF0000"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 4 38)" fill="#FF0000"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 2 38)" fill="#FF0000"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 2 40)" fill="black"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 0 38)" fill="black"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 0 36)" fill="black"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 2 34)" fill="black"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 4 32)" fill="black"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 6 32)" fill="black"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 8 34)" fill="black"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 10 32)" fill="black"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 12 34)" fill="black"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 12 40)" fill="black"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 8 30)" fill="black"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 2 30)" fill="black"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 10 36)" fill="black"/>
+<rect x="10" y="36" width="2" height="2" fill="black"/>
+<rect x="8" y="38" width="2" height="2" fill="black"/>
+<rect width="2" height="2" transform="matrix(1 0 0 -1 6 42)" fill="black"/>
+<g clip-path="url(#clip1_1_130)">
+<rect x="3" y="28" width="14" height="1" transform="rotate(-90 3 28)" fill="black"/>
+<rect x="2" y="28" width="14" height="1" transform="rotate(-90 2 28)" fill="black"/>
+<path d="M6 28L6 14L7 14L7 28L6 28Z" fill="black"/>
+<path d="M8 28L8 14L9 14L9 28L8 28Z" fill="black"/>
+<rect x="7" y="28" width="14" height="1" transform="rotate(-90 7 28)" fill="black"/>
+<rect x="9" y="28" width="14" height="1" transform="rotate(-90 9 28)" fill="black"/>
+</g>
+<rect x="14" y="3" width="14" height="1" fill="black"/>
+<rect x="14" y="2" width="14" height="1" fill="black"/>
+<path d="M14 6L28 6V7L14 7V6Z" fill="black"/>
+<path d="M14 8L28 8V9L14 9V8Z" fill="black"/>
+<rect x="14" y="7" width="14" height="1" fill="black"/>
+<rect x="14" y="9" width="14" height="1" fill="black"/>
+<g clip-path="url(#clip2_1_130)">
+<rect x="39" y="14" width="14" height="1" transform="rotate(90 39 14)" fill="black"/>
+<rect x="40" y="14" width="14" height="1" transform="rotate(90 40 14)" fill="black"/>
+<path d="M36 14L36 28L35 28L35 14L36 14Z" fill="black"/>
+<path d="M34 14L34 28L33 28L33 14L34 14Z" fill="black"/>
+<rect x="35" y="14" width="14" height="1" transform="rotate(90 35 14)" fill="black"/>
+<rect x="33" y="14" width="14" height="1" transform="rotate(90 33 14)" fill="black"/>
+</g>
+<g clip-path="url(#clip3_1_130)">
+<rect x="28" y="39" width="14" height="1" transform="rotate(-180 28 39)" fill="black"/>
+<rect x="28" y="40" width="14" height="1" transform="rotate(-180 28 40)" fill="black"/>
+<path d="M28 36L14 36L14 35L28 35L28 36Z" fill="black"/>
+<path d="M28 34L14 34L14 33L28 33L28 34Z" fill="black"/>
+<rect x="28" y="35" width="14" height="1" transform="rotate(-180 28 35)" fill="black"/>
+<rect x="28" y="33" width="14" height="1" transform="rotate(-180 28 33)" fill="black"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_1_130">
+<rect width="42" height="42" fill="white"/>
+</clipPath>
+<clipPath id="clip1_1_130">
+<rect width="14" height="14" fill="white" transform="translate(0 28) rotate(-90)"/>
+</clipPath>
+<clipPath id="clip2_1_130">
+<rect width="14" height="14" fill="white" transform="translate(42 14) rotate(90)"/>
+</clipPath>
+<clipPath id="clip3_1_130">
+<rect width="14" height="14" fill="white" transform="translate(28 42) rotate(-180)"/>
+</clipPath>
+</defs>
+</svg>

@@ -5,6 +5,7 @@ import { useNewPokemonModal } from "../../Hooks/useNewPokemonModal";
 import NewPokemonModal from "../NewPokemonModal";
 import styles from "./styles.module.scss";
 import useWindowDimensions from "../../Hooks/useWindowDimensions";
+import Link from 'next/link'
 
 export function Header() {
   const [activeMenu, setActiveMenu] = useState(true);
@@ -14,13 +15,12 @@ export function Header() {
   const router = useRouter();
   const { height, width } = useWindowDimensions();
 
-  useEffect(()=>{
-    setActiveMenu(()=> width >= 600 ? true : false)
-  },[width])
+  useEffect(() => {
+    setActiveMenu(() => (width >= 600 ? true : false));
+  }, [width]);
 
   return (
     <>
-      
       <header className={styles.header_container}>
         <div
           className={`${styles.header_wrapper} ${
@@ -28,22 +28,23 @@ export function Header() {
           }`}
         >
           <div className={styles.logoImage}>
-            <img
-              src="/images/logo.png"
-              alt="Logo do site"
-            />
+            <img src="/images/logo.png" alt="Logo do site" />
           </div>
           <nav className={styles.header_wrapper_nav}>
-            <a className={router.pathname == "/" ? styles.active : ""} href="/">
-              Home
-            </a>
 
-            <a
-              className={router.pathname == "/pokemons" ? styles.active : ""}
-              href="/pokemons"
-            >
+            <Link href="/">
+              <a
+                className={router.pathname == "/" ? styles.active : ""}
+              >
+                Home
+              </a>
+            </Link>
+
+            <Link href="/pokemons">
+            <a className={router.pathname == "/pokemons" ? styles.active : ""}>
               Pokemons
             </a>
+            </Link>
 
             <button
               className={styles.button_add}

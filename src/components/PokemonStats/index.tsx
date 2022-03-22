@@ -15,6 +15,7 @@ export function PokemonStats(pokemons: PokemonStatsProps) {
   return (
     <section className={styles.stats}>
       <h3>Pokemon Difference Stats:</h3>
+      <div className={styles.stats_wrapper}>
       <p>
         Type 1:{" "}
         {selectedPokemon?.types.type1 == randomPokemon?.types.type1
@@ -41,6 +42,7 @@ export function PokemonStats(pokemons: PokemonStatsProps) {
           selectedPokemon?.weight
         )}
       </p>
+      </div>
 
       <Lifes lifes={lifes} />
       
