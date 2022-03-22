@@ -15,7 +15,7 @@ export function Header() {
   const { height, width } = useWindowDimensions();
 
   useEffect(()=>{
-    setActiveMenu(()=> width > 603 ? true : false)
+    setActiveMenu(()=> width >= 600 ? true : false)
   },[width])
 
   return (
@@ -27,10 +27,8 @@ export function Header() {
             !activeMenu && styles.not_active
           }`}
         >
-          <div className={styles.image}>
+          <div className={styles.logoImage}>
             <img
-              width={200}
-              height={110}
               src="/images/logo.png"
               alt="Logo do site"
             />

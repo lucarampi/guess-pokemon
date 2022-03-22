@@ -8,7 +8,6 @@ import { GuessedPokemon } from "../components/GuessedPokemon";
 import { PokemonStats } from "../components/PokemonStats";
 import { CurrentPokemon } from "../components/CurrentPokemon";
 import { usePokemons } from "../Hooks/usePokemons";
-import Sound from 'react-sound'
 
 interface gameState {
   lifes: number;
@@ -18,7 +17,8 @@ interface gameState {
 }
 
 const Home: NextPage = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
+  // const [sound] = useState(new Audio("/audios/audio.mp3"));
+  const [sound] = useState(typeof Audio !== "undefined" && new Audio("/audios/audio.mp3"))
   const { pokemons } = usePokemons();
   const [randomPokemon, setRandomPokemon] = useState<PokemonInterface>(() => {
     return (pokemons && _.sample(pokemons)) || ({} as PokemonInterface);
@@ -74,6 +74,7 @@ const Home: NextPage = () => {
       }
     }
   }, [selectedId]);
+
   useEffect(() => {
     if (gameState.lose) {
       alert("You lose!");
@@ -88,11 +89,6 @@ const Home: NextPage = () => {
 
   return (
     <div className={styles.contentContainer}>
-      <Sound
-      url="/audios/audio.mp3"
-      playStatus={isPlaying? "PLAYING" : "STOPPED"}
-
-      />
       <Head>
         <title>Guess Pokemon</title>
         <link rel="icon" href="/favicon.ico" />
@@ -103,9 +99,9 @@ const Home: NextPage = () => {
         <div className={styles.gameStart}>
           <button
             onClick={() => {
-              setIsPlaying(true)
               setSelectedPokemon(generateDefaultPokemon);
               generateNewRandomPokemon();
+              sound.play()
             }}
           >
             {" "}
@@ -147,6 +143,7 @@ const Home: NextPage = () => {
           <GuessedPokemon {...selectedPokemon} />
         </>
       )}
+      <div></div>
     </div>
   );
 };
