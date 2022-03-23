@@ -15,7 +15,7 @@ export function Header() {
   const { height, width } = useWindowDimensions();
   
   useEffect(() => {
-    setActiveMenu(() => (width >= 600 ? true : false));
+    setActiveMenu(() => (width! >= 600 ? true : false));
   }, [width]);
   
   const router = useRouter();

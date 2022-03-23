@@ -6,7 +6,7 @@ import { PokemonInterface } from "../../services/axios";
 interface ResultModalProps {
   result: boolean;
   pokemon: PokemonInterface;
-  setIsResultModalOpen: (boolean) => void;
+  setIsResultModalOpen: (arg0: boolean) => void;
   handleGameRestart: () => void;
 }
 
@@ -54,7 +54,7 @@ export default function ResultModal({
         ) : (
           <div className={styles.game_lose}>
             <h1>Essa não...</h1>
-            <h3><strong>{pokemon.name}</strong> escapou!</h3>
+            <h3><span>{pokemon.name}</span> escapou!</h3>
           </div>
         )}
 
