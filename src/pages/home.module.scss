@@ -76,7 +76,7 @@
     grid-area: stats;
 
     select {
-        max-width: clamp(460px, 100%, 600px);
+        width: 90%;
         margin: 0.5rem 0;
         padding: 1rem;
         grid-area: stats;
@@ -89,9 +89,13 @@
         text-transform: capitalize;
 
         @media (max-width:580px) {
-            width: 70%;
+            width: 90%;
         }
+        @media (max-width:400px) {
+           font-size: 11px;
+           padding: 1rem 0.25rem;
 
+          }
         &:hover {
             background-color: whitesmoke;
         }

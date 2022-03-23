@@ -40,7 +40,7 @@ const Home: NextPage = () => {
   function generateDefaultPokemon(): PokemonInterface {
     return {
       id: -1,
-      name: "Select a Pokemon",
+      name: "Select Pokemon",
       imageUrl:
         "/images/pokeball.png",
       types: { type1: "", type2: "" },

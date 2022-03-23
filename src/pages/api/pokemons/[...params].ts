@@ -5,7 +5,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { PokemonInterface } from '../../../services/axios'
 
 const POKEMON_COUNT = 151;
-const ENABLE_DATABASE_UPDATE = true;
+const ENABLE_DATABASE_UPDATE = false;
 
 interface PokeapiInterface {
   results: Array<PokeapiUrlInterface>

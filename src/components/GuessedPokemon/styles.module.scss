@@ -12,7 +12,7 @@
         h2{
             font-size: larger;
         }
-        width: 220px;
+        width: 210px;
     }
     @media (max-width:500) {
         h2{
@@ -23,6 +23,12 @@
     @media (max-width:440px) {
         h2{
             font-size: medium;
+        }
+        width: 100px;
+      }
+      @media (max-width:300px) {
+        h2{
+            font-size: smaller;
         }
         width: 100px;
       }

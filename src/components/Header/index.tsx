@@ -5,54 +5,58 @@ import { useNewPokemonModal } from "../../Hooks/useNewPokemonModal";
 import NewPokemonModal from "../NewPokemonModal";
 import styles from "./styles.module.scss";
 import useWindowDimensions from "../../Hooks/useWindowDimensions";
-import Link from 'next/link'
+import Link from "next/link";
 
 export function Header() {
   const [activeMenu, setActiveMenu] = useState(true);
 
   const { handleOpenNewPokemonModal, isOpen } = useNewPokemonModal();
 
-  const router = useRouter();
   const { height, width } = useWindowDimensions();
-
+  
   useEffect(() => {
     setActiveMenu(() => (width >= 600 ? true : false));
   }, [width]);
+  
+  const router = useRouter();
 
   return (
     <>
-      <header className={styles.header_container}>
+      <header className={styles.wrapper}>
         <div
-          className={`${styles.header_wrapper} ${
-            !activeMenu && styles.not_active
-          }`}
+          className={`${styles.container} ${!activeMenu && styles.not_active}`}
         >
           <div className={styles.logoImage}>
-           <Link href="/">
-           <img src="/images/logo.png" alt="Logo do site" />
-           </Link>
+            <Link href="/">
+              <img
+                src="/images/logo.png"
+                alt="Logo do site"
+                onClick={() => {
+                  router.reload();
+                }}
+              />
+            </Link>
           </div>
           <nav className={styles.header_wrapper_nav}>
-
             <Link href="/">
-              <a
-                className={router.pathname == "/" ? styles.active : ""}
-              >
+              <a className={router.pathname == "/" ? styles.active : ""}>
                 Home
               </a>
             </Link>
 
             <Link href="/pokemons">
-            <a className={router.pathname == "/pokemons" ? styles.active : ""}>
-              Pokemons
-            </a>
+              <a
+                className={router.pathname == "/pokemons" ? styles.active : ""}
+              >
+                Pokemons
+              </a>
             </Link>
 
             <button
               className={styles.button_add}
               onClick={handleOpenNewPokemonModal}
             >
-              <MdOutlineLibraryAdd />
+              <MdOutlineLibraryAdd   />
             </button>
           </nav>
           <button
