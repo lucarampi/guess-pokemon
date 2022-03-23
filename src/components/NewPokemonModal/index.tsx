@@ -38,14 +38,15 @@ export default function NewPokemonModal({ active }: ModalDoCaraBomProps) {
 
   async function hadleCreateNewPokemon(event: FormEvent) {
     event.preventDefault();
+
     await createPokemon({
-      name,
       imageUrl,
       height,
+      name: name.toLowerCase(),
       weight,
       types: {
-        type1,
-        type2,
+        type1: type1.toLowerCase(),
+        type2: type2.toLowerCase(),
       },
     });
     resetModalForm();

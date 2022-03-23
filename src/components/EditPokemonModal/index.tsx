@@ -30,17 +30,17 @@ export default function EditPokemonModal({
   function handleOutsideClick(ev: SyntheticEvent) {
     ev.target === ev.currentTarget && handleCloseEditPokemonModal();
   }
-  async function handleCreateNewPokemon(event: any) {
+  async function handleEditNewPokemon(event: any) {
     event.preventDefault();
     const editedPokemon: PokemonInterface = {
       imageUrl,
       height,
-      name,
+      name:name.toLowerCase(),
       weight,
       id,
       types: {
-        type1,
-        type2,
+        type1:type1.toLowerCase(),
+        type2:type2.toLowerCase(),
       },
     };
     editPokemon(editedPokemon);
@@ -66,7 +66,7 @@ export default function EditPokemonModal({
           <Image width={15} height={15} src="/images/close.svg" />
         </button>
 
-        <form className={styles.container} onSubmit={handleCreateNewPokemon}>
+        <form className={styles.container} onSubmit={handleEditNewPokemon}>
           <img src={imageUrl} alt="New pokemon image" />
 
           <input
@@ -74,7 +74,7 @@ export default function EditPokemonModal({
             placeholder="Pokemon's image (URL)"
             name="_imageUrl"
             required
-            value={imageUrl}
+            value={imageUrlAux}
             onChange={(event) => setImageUrlAux(event.target.value)}
             onBlur={() => setImageUrl(imageUrlAux)}
           />
