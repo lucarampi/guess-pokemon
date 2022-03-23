@@ -14,7 +14,7 @@
 
         .header_wrapper_nav {
             gap: 30px;
-            margin-top:1rem ;
+            margin-top:1rem;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -77,6 +77,9 @@
                 flex-direction: row;
                 justify-content: flex-start;
                 max-height: inherit;
+                margin-top:0rem;
+
+                gap: 30px;
 
                 a {
                     text-decoration: none;
