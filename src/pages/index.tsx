@@ -18,19 +18,12 @@ interface gameState {
 }
 
 const Home: NextPage = () => {
-  // const [sound] = useState(new Audio("/audios/audio.mp3"));
-  const [sound] = useState(
-    typeof Audio !== "undefined" && new Audio("/audios/audio.mp3")
-  );
+  const [sound,setSound] = useState<HTMLAudioElement>();
   const { pokemons } = usePokemons();
   const [isResultModalOpen, setIsResultModalOpen] = useState(false);
-  const [randomPokemon, setRandomPokemon] = useState<PokemonInterface>(() => {
-    return (pokemons && _.sample(pokemons)) || ({} as PokemonInterface);
-  });
-  const [selectedPokemon, setSelectedPokemon] = useState<PokemonInterface>(
-    generateDefaultPokemon
-  );
-  const [selectedId, setSelectedId] = useState(selectedPokemon.id);
+  const [randomPokemon, setRandomPokemon] = useState<PokemonInterface>();
+  const [selectedPokemon, setSelectedPokemon] = useState<PokemonInterface>();
+  const [selectedId, setSelectedId] = useState(0);
   const [gameState, setGameState] = useState<gameState>({
     lifes: 5,
     start: false,
@@ -70,10 +63,18 @@ const Home: NextPage = () => {
   }
   function handleGameStart() {
     setSelectedPokemon(generateDefaultPokemon);
+    setSelectedId(selectedPokemon?.id!)
     generateNewRandomPokemon();
-    sound.play()
+    sound!.volume=0.5;
+    sound!.play()
   }
+  useEffect(()=>{
+    setSound(new Audio("/audios/audio.mp3"))
+    setRandomPokemon(_.sample(pokemons) as PokemonInterface)
+    setSelectedPokemon(generateDefaultPokemon)
+    
 
+  },[])
   useEffect(() => {
     if (selectedPokemon?.id === randomPokemon?.id && gameState.start) {
       setGameState({ ...gameState, start: false, win: true });
@@ -126,7 +127,7 @@ const Home: NextPage = () => {
               </div>
               {isResultModalOpen && (
                 <ResultModal
-                  pokemon={randomPokemon}
+                  pokemon={randomPokemon!}
                   setIsResultModalOpen={setIsResultModalOpen}
                   result={gameState.win}
                   handleGameRestart={handleGameRestart}

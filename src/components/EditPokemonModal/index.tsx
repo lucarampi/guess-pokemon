@@ -4,6 +4,9 @@ import Image from "next/image";
 import { PokemonInterface } from "../../services/axios";
 import { usePokemons } from "../../Hooks/usePokemons";
 import { useEditPokemonModal } from "../../Hooks/useEditPokemonModal";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+const DEFAULT_IMAGE = "https://cdn-icons-png.flaticon.com/128/188/188918.png";
 
 interface ModalDoCaraBomProps {
   active: boolean;
@@ -33,14 +36,14 @@ export default function EditPokemonModal({
   async function handleEditNewPokemon(event: any) {
     event.preventDefault();
     const editedPokemon: PokemonInterface = {
-      imageUrl,
+      imageUrl: imageUrlAux,
       height,
-      name:name.toLowerCase(),
+      name: name.toLowerCase(),
       weight,
       id,
       types: {
-        type1:type1.toLowerCase(),
-        type2:type2.toLowerCase(),
+        type1: type1 ? type1.toLowerCase() : "",
+        type2: type2 ? type2.toLowerCase() : "",
       },
     };
     editPokemon(editedPokemon);
@@ -50,6 +53,18 @@ export default function EditPokemonModal({
     deletePokemon(id);
     handleCloseEditPokemonModal();
     handleResetEditPokemonModal();
+  }
+  function handleErrorOnImageUrl() {
+    toast.warn("Imagem inválida! Substituída pela imagem anterior", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    setImageUrlAux(imageUrl);
   }
   function handleCloseOnKeyDowPress(ev: KeyboardEvent<HTMLDivElement>) {
     if (ev.key.toLocaleLowerCase() === "escape") {
@@ -63,7 +78,6 @@ export default function EditPokemonModal({
       onClick={handleOutsideClick}
       onKeyDown={handleCloseOnKeyDowPress}
       tabIndex={0}
-
     >
       <div className={styles.modal_wrapper}>
         <button
@@ -75,18 +89,25 @@ export default function EditPokemonModal({
         </button>
 
         <form className={styles.container} onSubmit={handleEditNewPokemon}>
-          <img src={imageUrl} alt="New pokemon image" />
-
+          <img
+            src={imageUrlAux}
+            alt="New pokemon image"
+            onError={handleErrorOnImageUrl}
+          />
+          <label className={styles.tip} htmlFor="_height">
+            * Cole o link (URL) no campo a baixo
+          </label>
           <input
             type="text"
-            placeholder="Pokemon's image (URL)"
+            placeholder="Link imagem Pokemon (URL)"
             name="_imageUrl"
             required
             value={imageUrlAux}
             onChange={(event) => setImageUrlAux(event.target.value)}
-            onBlur={() => setImageUrl(imageUrlAux)}
           />
-
+          <label className={styles.tip} htmlFor="_height">
+            * Nome
+          </label>
           <input
             type="text"
             placeholder="Pokemon's Name"
@@ -97,50 +118,63 @@ export default function EditPokemonModal({
           />
 
           <div className={styles.two_items_container}>
+            <label className={styles.tip} htmlFor="_weight">
+              * Peso (gramas)
+            </label>
+            <label className={styles.tip} htmlFor="_height">
+              * Altura (centimetros)
+            </label>
             <input
               type="number"
-              placeholder="Weight"
+              placeholder="Peso"
               name="_weight"
               required
               min={0}
-              step={0.01}
+              step={1}
               value={weight}
               onChange={(event) => setWeight(Number(event.target.value))}
             />
+
             <input
               type="number"
-              placeholder="Height"
+              placeholder="Altura"
               name="_height"
               required
               min={0}
-              step={0.01}
+              step={1}
               value={height}
               onChange={(event) => setHeight(Number(event.target.value))}
             />
           </div>
+          <div className={styles.two_items_container}>
+            <label className={styles.tip} htmlFor="_height">
+              * Tipo 1
+            </label>
+            <label className={styles.tip} htmlFor="_height">
+              * Tipo 2
+            </label>
+            <input
+              type="text"
+              placeholder="Tipo 1"
+              name="_type1"
+              required
+              value={type1}
+              onChange={(event) => setType1(event.target.value)}
+            />
 
-          <input
-            type="text"
-            placeholder="Type 1"
-            name="_type1"
-            required
-            value={type1}
-            onChange={(event) => setType1(event.target.value)}
-          />
-
-          <input
-            type="text"
-            placeholder="Type 2"
-            name="_type2"
-            value={type2}
-            onChange={(event) => setType2(event.target.value)}
-          />
-
+            <input
+              type="text"
+              placeholder="Tipo 2"
+              name="_type2"
+              value={type2}
+              onChange={(event) => setType2(event.target.value)}
+            />
+          </div>
           <div className={styles.buttons_container}>
             <button
               type="button"
               className={styles.delete_button}
-              onClick={() => handleDeletePokemon(id)}
+              onClick={() => handleDeletePokemon(id!)}
             >
               {/* <img src="/images/trash.svg" alt="Delete this Pokemon" /> */}
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">

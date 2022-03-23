@@ -5,7 +5,7 @@
 
     width: 100%;
     height: 100%;
-    z-index: 99999;
+    z-index: 9998;
 
     position: fixed;
     top: 0;
@@ -75,6 +75,13 @@
         flex-wrap: wrap;
         gap: 12px;
 
+        .tip{
+            font-family: Poppins, sans-serif;
+            font-size: 12px;
+            line-height: 5px;
+            padding-top: 10px;
+            padding-left: 1rem;
+        }
 
         input {
             height: 40px;

@@ -1,4 +1,5 @@
 // import { useNewPokemonModal } from "../../Hooks/useNewPokemonModal";
+import _ from "lodash";
 import { useNewPokemonModal } from "../../Hooks/useNewPokemonModal";
 import { usePokemons } from "../../Hooks/usePokemons";
 import LoadingPokeball from "../LoadingPokeball";
@@ -14,7 +15,7 @@ export default function PokemonsTable() {
       {isLoading ? (
         <LoadingPokeball />
       ) : pokemons.length > 0 ? (
-        pokemons.map((pokemon) => <PokemonItem key={pokemon.id} {...pokemon} />)
+        _.sortBy(pokemons,["name"],["asc"] ).map((pokemon) => <PokemonItem key={pokemon.id} {...pokemon} />)
       ) : (
         <div className={styles.warning_empty}>
           Ops... parece que não tem nada aqui... Cadastre um{" "}

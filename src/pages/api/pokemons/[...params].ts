@@ -5,7 +5,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { PokemonInterface } from '../../../services/axios'
 
 const POKEMON_COUNT = 151;
-const ENABLE_DATABASE_UPDATE = false;
+const ENABLE_DATABASE_UPDATE = true;
 
 interface PokeapiInterface {
   results: Array<PokeapiUrlInterface>
@@ -170,9 +170,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     const { id, height, name, types, weight, imageUrl } = req.body
     const newPokemon: PokemonNoId = { height, name, types, weight, imageUrl }
+    console.log(id)
     await supabase.from("pokemons")
       .update(newPokemon)
       .match({ id: id });
+      
     res.status(200).json(await getAllPokemons())
   }
   else if (req.method === 'DELETE') {
