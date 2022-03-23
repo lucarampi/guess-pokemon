@@ -42,7 +42,7 @@ const Home: NextPage = () => {
       id: -1,
       name: "Select a Pokemon",
       imageUrl:
-        "https://www.freeiconspng.com/thumbs/pokeball-png/pokeball-transparent-png-2.png",
+        "/images/pokeball.png",
       types: { type1: "", type2: "" },
       height: 0,
       weight: 0,
@@ -58,7 +58,21 @@ const Home: NextPage = () => {
       win: false,
     });
   }
+  function handleGameRestart(){
+    setGameState({
+      lifes: 5,
+      start: false,
+      win: false,
+      lose: false,
+    })
 
+    handleGameStart()
+  }
+  function handleGameStart() {
+    setSelectedPokemon(generateDefaultPokemon);
+    generateNewRandomPokemon();
+    sound.play()
+  }
 
   useEffect(() => {
     if (selectedPokemon?.id === randomPokemon?.id && gameState.start) {
@@ -108,22 +122,14 @@ const Home: NextPage = () => {
           ) : (
             <>
               <div className={styles.gameStart}>
-                <button
-                  onClick={() => {
-                    setSelectedPokemon(generateDefaultPokemon);
-                    generateNewRandomPokemon();
-                    sound.play();
-                  }}
-                >
-                  {" "}
-                  Start New Game
-                </button>
+                <button onClick={handleGameStart}> Start New Game</button>
               </div>
               {isResultModalOpen && (
                 <ResultModal
                   pokemon={randomPokemon}
                   setIsResultModalOpen={setIsResultModalOpen}
                   result={gameState.win}
+                  handleGameRestart={handleGameRestart}
                 />
               )}
             </>

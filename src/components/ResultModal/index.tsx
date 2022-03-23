@@ -7,12 +7,14 @@ interface ResultModalProps {
   result: boolean;
   pokemon: PokemonInterface;
   setIsResultModalOpen: (boolean) => void;
+  handleGameRestart: () => void;
 }
 
 export default function ResultModal({
   result,
   pokemon,
   setIsResultModalOpen,
+  handleGameRestart
 }: ResultModalProps) {
   function handleCloseResultModal() {
     setIsResultModalOpen(false);
@@ -51,8 +53,7 @@ export default function ResultModal({
           </div>
         ) : (
           <div className={styles.game_lose}>
-            <h2>Essa não...</h2>
-            <br />
+            <h1>Essa não...</h1>
             <h3><strong>{pokemon.name}</strong> escapou!</h3>
           </div>
         )}
@@ -62,7 +63,10 @@ export default function ResultModal({
         </div>
         <button
         className={styles.try_again_button}
-        onClick={handleCloseResultModal}
+        onClick={()=>{
+          handleGameRestart()
+          handleCloseResultModal}
+        }
         >
           Tentar Novamente
         </button>

@@ -1,6 +1,4 @@
 .modal {
-
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,6 +24,7 @@
     background: #FFF;
     border-radius: 0.5rem;
     padding: 2rem;
+    gap:1rem;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
     display: flex;
     flex-direction: column;
@@ -50,11 +49,12 @@
 
     .game_lose,
     .game_win {
+        width: 100%;
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
         gap: 2rem;
+        text-align: center;
 
         h1,
         h3 {
@@ -65,11 +65,11 @@
             text-transform: capitalize;
         }
 
-        padding: 2rem 1rem;
     }
 
     .game_lose {
         &>h1 {
+            
             color: red;
         }
     }
@@ -98,6 +98,7 @@
                 transform: scale(1, 1);
             }
         }
+
     }
 
     .try_again_button {
