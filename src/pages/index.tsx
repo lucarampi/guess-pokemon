@@ -116,7 +116,6 @@ const Home: NextPage = () => {
         <div className={styles.container}>
           <Head>
             <title>Guess Pokemon</title>
-            <link rel="icon" href="/favicon.ico" />
           </Head>
           {randomPokemon && gameState.start ? (
             <CurrentPokemon {...randomPokemon} />
