@@ -8,6 +8,7 @@ import { GuessedPokemon } from "../components/GuessedPokemon";
 import { PokemonStats } from "../components/PokemonStats";
 import { CurrentPokemon } from "../components/CurrentPokemon";
 import { usePokemons } from "../Hooks/usePokemons";
+import ResultModal from "../components/ResultModal";
 
 interface gameState {
   lifes: number;
@@ -22,6 +23,7 @@ const Home: NextPage = () => {
     typeof Audio !== "undefined" && new Audio("/audios/audio.mp3")
   );
   const { pokemons } = usePokemons();
+  const [isResultModalOpen, setIsResultModalOpen] = useState(false);
   const [randomPokemon, setRandomPokemon] = useState<PokemonInterface>(() => {
     return (pokemons && _.sample(pokemons)) || ({} as PokemonInterface);
   });
@@ -56,9 +58,12 @@ const Home: NextPage = () => {
       win: false,
     });
   }
+
+
   useEffect(() => {
     if (selectedPokemon?.id === randomPokemon?.id && gameState.start) {
       setGameState({ ...gameState, start: false, win: true });
+      setIsResultModalOpen(true);
     }
     if (selectedPokemon?.id !== randomPokemon?.id && gameState.start) {
       if (gameState.lifes - 1 === 0) {
@@ -68,6 +73,7 @@ const Home: NextPage = () => {
           start: false,
           lose: true,
         });
+        setIsResultModalOpen(true);
       } else {
         setGameState({
           ...gameState,
@@ -79,75 +85,86 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     if (gameState.lose) {
-      alert("You lose!");
+      setIsResultModalOpen(true);
       return;
     }
 
     if (gameState.win) {
-      alert("You win!");
+      setIsResultModalOpen(true);
       return;
     }
   }, [gameState]);
 
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.container}>
-        <Head>
-          <title>Guess Pokemon</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        {randomPokemon && gameState.start ? (
-          <CurrentPokemon {...randomPokemon} />
-        ) : (
-          <div className={styles.gameStart}>
-            <button
-              onClick={() => {
-                setSelectedPokemon(generateDefaultPokemon);
-                generateNewRandomPokemon();
-                sound.play();
-              }}
-            >
-              {" "}
-              Start New Game
-            </button>
-          </div>
-        )}
+    <>
+      <div className={styles.wrapper}>
+        <div className={styles.container}>
+          <Head>
+            <title>Guess Pokemon</title>
+            <link rel="icon" href="/favicon.ico" />
+          </Head>
+          {randomPokemon && gameState.start ? (
+            <CurrentPokemon {...randomPokemon} />
+          ) : (
+            <>
+              <div className={styles.gameStart}>
+                <button
+                  onClick={() => {
+                    setSelectedPokemon(generateDefaultPokemon);
+                    generateNewRandomPokemon();
+                    sound.play();
+                  }}
+                >
+                  {" "}
+                  Start New Game
+                </button>
+              </div>
+              {isResultModalOpen && (
+                <ResultModal
+                  pokemon={randomPokemon}
+                  setIsResultModalOpen={setIsResultModalOpen}
+                  result={gameState.win}
+                />
+              )}
+            </>
+          )}
 
-        {randomPokemon && selectedPokemon && gameState.start && (
-          <>
-            <section key={randomPokemon.name} className={styles.gameStats}>
-              <select
-                value={selectedId}
-                name="pokemonSelect"
-                defaultValue={selectedId}
-                onChange={(ev) => {
-                  setSelectedId(parseInt(ev.target.value, 10));
-                  setSelectedPokemon(
-                    _.find(pokemons, (p) => p.id === Number(ev.target.value))
-                  );
-                }}
-              >
-                <option value={-1} disabled hidden>
-                  Select a pokemon here!
-                </option>
-                {_.sortBy(pokemons, ["name"], ["asc"]).map((pokemon) => (
-                  <option key={pokemon.id} value={pokemon.id}>
-                    {pokemon.name}
+          {randomPokemon && selectedPokemon && gameState.start && (
+            <>
+              <section key={randomPokemon.name} className={styles.gameStats}>
+                <select
+                  value={selectedId}
+                  name="pokemonSelect"
+                  defaultValue={selectedId}
+                  onChange={(ev) => {
+                    setSelectedId(parseInt(ev.target.value, 10));
+                    setSelectedPokemon(
+                      _.find(pokemons, (p) => p.id === Number(ev.target.value))
+                    );
+                  }}
+                >
+                  <option value={-1} disabled hidden>
+                    Select a pokemon here!
                   </option>
-                ))}
-              </select>
-              <PokemonStats
-                selectedPokemon={selectedPokemon}
-                randomPokemon={randomPokemon}
-                lifes={gameState.lifes}
-              />
-            </section>
+                  {_.sortBy(pokemons, ["name"], ["asc"]).map((pokemon) => (
+                    <option key={pokemon.id} value={pokemon.id}>
+                      {pokemon.name}
+                    </option>
+                  ))}
+                </select>
+                <PokemonStats
+                  selectedPokemon={selectedPokemon}
+                  randomPokemon={randomPokemon}
+                  lifes={gameState.lifes}
+                />
+              </section>
 
-            <GuessedPokemon {...selectedPokemon} />
-          </>
-        )}
+              <GuessedPokemon {...selectedPokemon} />
+            </>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

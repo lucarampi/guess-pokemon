@@ -1,21 +1,18 @@
 .stats {
-  width: clamp(460px, 100%, 600px);
-  padding: 2rem 3rem;
-
+  padding: 1rem 3rem 2rem;
   border-image: url("/images/frame.svg") 15 fill / 25px;
-
-
-  // @media (max-width:560px) {
-  //   width: 420px;
-  //   line-height: 16px;
-  // }
-
-  // @media (max-width:440px) {
-  //   width: 300px;
-  //   line-height: 5px;
-  // }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  >h3 {
+    line-height: 2rem;
+  }
 
   .stats_wrapper {
-
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin: 0 auto;
   }
 }

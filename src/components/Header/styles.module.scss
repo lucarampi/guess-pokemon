@@ -7,7 +7,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     .header_wrapper {
         display: flex;
         flex-direction: column;
@@ -149,7 +148,13 @@
 .logoImage {
     >img {
         height: 70px;
+        filter: brightness(1.1);
+        transition: all 0.2s ease-in-out;
+        &:hover{
+            filter: brightness(1);  
+        }
     }
+
 }
 
 

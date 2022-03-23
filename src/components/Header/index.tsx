@@ -28,7 +28,9 @@ export function Header() {
           }`}
         >
           <div className={styles.logoImage}>
-            <img src="/images/logo.png" alt="Logo do site" />
+           <Link href="/">
+           <img src="/images/logo.png" alt="Logo do site" />
+           </Link>
           </div>
           <nav className={styles.header_wrapper_nav}>
 

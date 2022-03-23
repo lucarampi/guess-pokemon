@@ -1,5 +1,5 @@
 .wrapper {
-    padding: 1rem ;
+    padding: 1rem;
 }
 
 .container {
@@ -32,28 +32,34 @@
 
 .gameStart {
     width: 100%;
+    height: 500px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+    align-items: flex-start;
     grid-area: start;
 
-
+    padding-bottom: 3rem ;
     button {
-        font-size: x-large;
-        margin-top: 5rem;
-        align-self: center;
         width: 50%;
-        border-radius: 10rem;
-        background: rgb(255, 200, 81);
-        border: 0;
+        margin-top: 5rem;
         padding: 2rem;
-        color: rgb(36, 25, 0);
+        
+        border-radius: 2rem;
+        border: 0;
+        
+        background: rgb(255, 158, 13);
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+        
+        font-size: x-large;
         font-weight: bold;
-        transition: filter 0.2s;
+        color: rgb(255, 255, 255);
 
+        transition: all 0.2s ease-in-out;
         &:hover {
             filter: brightness(0.9);
+            background: var(--header-bg);
+
+            color: white;
         }
     }
 }
@@ -87,8 +93,7 @@
         }
 
         option {
-            background-color: white;
-            margin: 50px;
+            background-color: var(--white);
         }
     }
 }
