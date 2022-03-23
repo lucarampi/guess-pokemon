@@ -49,7 +49,7 @@ export default function ResultModal({
         {result ? (
           <div className={styles.game_win}>
             <h1>Parabéns!</h1>
-            <h3>Você capturou um<strong>{pokemon.name}</strong>!</h3>
+            <h3>Você capturou um <span>{pokemon.name}</span>!</h3>
           </div>
         ) : (
           <div className={styles.game_lose}>

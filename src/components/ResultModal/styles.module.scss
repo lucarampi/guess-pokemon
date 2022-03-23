@@ -60,14 +60,18 @@
         h3 {
             margin: 0;
         }
-
-        strong {
-            text-transform: capitalize;
+        h3{
+            line-height: 2rem;
         }
 
+        span {
+            text-decoration: none;
+            text-transform: capitalize;
     }
-
-    .game_lose {
+        
+    }
+    
+.game_lose {
         &>h1 {
             
             color: red;

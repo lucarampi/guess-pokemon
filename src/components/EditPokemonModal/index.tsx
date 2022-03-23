@@ -1,4 +1,4 @@
-import { SyntheticEvent, useState } from "react";
+import { KeyboardEvent, SyntheticEvent, useState } from "react";
 import styles from "./styles.module.scss";
 import Image from "next/image";
 import { PokemonInterface } from "../../services/axios";
@@ -51,11 +51,19 @@ export default function EditPokemonModal({
     handleCloseEditPokemonModal();
     handleResetEditPokemonModal();
   }
+  function handleCloseOnKeyDowPress(ev: KeyboardEvent<HTMLDivElement>) {
+    if (ev.key.toLocaleLowerCase() === "escape") {
+      handleCloseEditPokemonModal();
+    }
+  }
 
   return (
     <div
       className={`${styles.modal} ${active && styles.active}`}
       onClick={handleOutsideClick}
+      onKeyDown={handleCloseOnKeyDowPress}
+      tabIndex={0}
+
     >
       <div className={styles.modal_wrapper}>
         <button

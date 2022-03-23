@@ -1,4 +1,4 @@
-import { FormEvent, SyntheticEvent, useState } from "react";
+import { FormEvent, KeyboardEvent, SyntheticEvent, useState } from "react";
 import { useNewPokemonModal } from "../../Hooks/useNewPokemonModal";
 import styles from "./styles.module.scss";
 import { usePokemons } from "../../Hooks/usePokemons";
@@ -52,11 +52,19 @@ export default function NewPokemonModal({ active }: ModalDoCaraBomProps) {
     resetModalForm();
     handleCloseNewPokemonModal();
   }
+  function handleCloseOnKeyDowPress(ev: KeyboardEvent<HTMLDivElement>) {
+    if (ev.key.toLocaleLowerCase() === "escape") {
+      handleCloseNewPokemonModal();
+    }
+  }
 
   return (
     <div
       className={`${styles.modal} ${active && styles.active}`}
       onClick={handleOutsideClick}
+      onKeyDown={handleCloseOnKeyDowPress}
+      tabIndex={0}
+
     >
       <div className={styles.modal_wrapper}>
         <button
