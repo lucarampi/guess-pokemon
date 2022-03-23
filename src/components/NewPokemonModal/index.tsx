@@ -109,6 +109,7 @@ export default function NewPokemonModal({ active }: ModalDoCaraBomProps) {
             * Nome
           </label>
           <input
+            className={styles.capitalize}
             type="text"
             placeholder="Pokemon's Name"
             name="_name"
@@ -125,24 +126,26 @@ export default function NewPokemonModal({ active }: ModalDoCaraBomProps) {
               * Altura (centimetros)
             </label>
             <input
-               type="number"
-               placeholder="Peso"
-               name="_weight"
-               required
-               min={0}
-               step={1}
-               value={weight}
-               onChange={(event) => setWeight(Number(event.target.value))}
+              className={styles.capitalize}
+              type="number"
+              placeholder="Peso"
+              name="_weight"
+              required
+              min={0}
+              step={1}
+              value={weight}
+              onChange={(event) => setWeight(Number(event.target.value))}
             />
             <input
-             type="number"
-             placeholder="Altura"
-             name="_height"
-             required
-             min={0}
-             step={1}
-             value={height}
-             onChange={(event) => setHeight(Number(event.target.value))}
+              className={styles.capitalize}
+              type="number"
+              placeholder="Altura"
+              name="_height"
+              required
+              min={0}
+              step={1}
+              value={height}
+              onChange={(event) => setHeight(Number(event.target.value))}
             />
           </div>
           <div className={styles.two_items_container}>
@@ -153,6 +156,7 @@ export default function NewPokemonModal({ active }: ModalDoCaraBomProps) {
               * Tipo 2
             </label>
             <input
+              className={styles.capitalize}
               type="text"
               placeholder="Tipo 1"
               name="_type1"
@@ -162,13 +166,13 @@ export default function NewPokemonModal({ active }: ModalDoCaraBomProps) {
             />
 
             <input
+              className={styles.capitalize}
               type="text"
               placeholder="Tipo 2"
               name="_type2"
               value={type2}
               onChange={(event) => setType2(event.target.value)}
             />
-        
           </div>
           <button type="submit">Cadastrar</button>
         </form>

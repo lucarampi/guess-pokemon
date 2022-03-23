@@ -109,6 +109,7 @@ export default function EditPokemonModal({
             * Nome
           </label>
           <input
+            className={styles.capitalize}
             type="text"
             placeholder="Pokemon's Name"
             name="_name"
@@ -125,6 +126,7 @@ export default function EditPokemonModal({
               * Altura (centimetros)
             </label>
             <input
+              className={styles.capitalize}
               type="number"
               placeholder="Peso"
               name="_weight"
@@ -136,6 +138,7 @@ export default function EditPokemonModal({
             />
 
             <input
+              className={styles.capitalize}
               type="number"
               placeholder="Altura"
               name="_height"
@@ -154,6 +157,7 @@ export default function EditPokemonModal({
               * Tipo 2
             </label>
             <input
+              className={styles.capitalize}
               type="text"
               placeholder="Tipo 1"
               name="_type1"
@@ -163,6 +167,7 @@ export default function EditPokemonModal({
             />
 
             <input
+              className={styles.capitalize}
               type="text"
               placeholder="Tipo 2"
               name="_type2"
