@@ -5,6 +5,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import { toast } from "react-toastify";
 import { api, PokemonInterface } from "../services/axios";
 
 //--------------------------------------------------------------
@@ -60,13 +61,18 @@ export function PokemonsProvider({ children }: PokemonsProviderProps) {
   //request api to get all Pokemons
   async function getPokemons() {
     setIsLoading(true)
+    const id = toast.loading("consultando banco de dados...")
     const response = await api.get(`/pokemons/data`);
+
+    if (!response){
+      toast.error("Erro ao consultar banco de dados. Contate o administrador");
+    }
     const updatedPokemons = response.data;
     setPokemons([...updatedPokemons]);
     setIsLoading((oldValue)=> !oldValue)
     Promise.all(updatedPokemons)
     console.log(updatedPokemons)
-
+    toast.update(id, { render: "Pokemons carregados!", type: "success", isLoading: false,autoClose: 2000});
     return [];
   }
 

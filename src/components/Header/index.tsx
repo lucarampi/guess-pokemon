@@ -6,6 +6,7 @@ import NewPokemonModal from "../NewPokemonModal";
 import styles from "./styles.module.scss";
 import useWindowDimensions from "../../Hooks/useWindowDimensions";
 import Link from "next/link";
+import { ToastContainer } from "react-toastify";
 
 export function Header() {
   const [activeMenu, setActiveMenu] = useState(true);
@@ -67,7 +68,6 @@ export function Header() {
           ></button>
         </div>
       </header>
-
       <NewPokemonModal active={isOpen} />
     </>
   );

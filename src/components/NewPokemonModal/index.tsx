@@ -178,5 +178,6 @@ export default function NewPokemonModal({ active }: ModalDoCaraBomProps) {
         </form>
       </div>
     </div>
+ 
   );
 }
