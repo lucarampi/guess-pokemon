@@ -1,6 +1,6 @@
 import { PokemonInterface } from "../../services/axios";
 import styles from "./styles.module.scss";
-import { compreValuesLeftToRight } from "../../services/functions";
+import { compareValuesLeftToRight, compareTypes } from "../../services/functions";
 import { Lifes } from "../Lifes";
 
 interface PokemonStatsProps {
@@ -18,26 +18,23 @@ export function PokemonStats(pokemons: PokemonStatsProps) {
       <div className={styles.stats_wrapper}>
       <p>
         Type 1:{" "}
-        {selectedPokemon?.types.type1 == randomPokemon?.types.type1
-          ? "Right!"
-          : "Wrong..."}
+       
+        { compareTypes(selectedPokemon?.types.type1,randomPokemon?.types.type1)}
       </p>
       <p>
         Type 2:{" "}
-        {selectedPokemon?.types.type2 == randomPokemon?.types.type2
-          ? "Right!"
-          : "Wrong..."}
+        { compareTypes(selectedPokemon?.types.type2,randomPokemon?.types.type2)}
       </p>
       <p>
         Height:{" "}
-        {compreValuesLeftToRight(
+        {compareValuesLeftToRight(
           randomPokemon?.height,
           selectedPokemon?.height
         )}
       </p>
       <p>
         Weight:{" "}
-        {compreValuesLeftToRight(
+        {compareValuesLeftToRight(
           randomPokemon?.weight,
           selectedPokemon?.weight
         )}
