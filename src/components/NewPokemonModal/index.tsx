@@ -60,7 +60,7 @@ export default function NewPokemonModal({ active }: ModalDoCaraBomProps) {
   }
 
   function handleErrorOnImageUrl() {
-    toast.warn("Imagem inválida! Substituída pela imagem padrão", {
+    toast.warn("Imagem inválida! Substituída pela imagem padrão...", {
       position: "bottom-right",
       autoClose: 5000,
       hideProgressBar: false,

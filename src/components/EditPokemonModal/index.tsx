@@ -55,7 +55,7 @@ export default function EditPokemonModal({
     handleResetEditPokemonModal();
   }
   function handleErrorOnImageUrl() {
-    toast.warn("Imagem inválida! Substituída pela imagem anterior", {
+    toast.warn("Imagem inválida! Substituída pela imagem anterior...", {
       position: "bottom-right",
       autoClose: 5000,
       hideProgressBar: false,
