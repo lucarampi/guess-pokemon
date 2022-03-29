@@ -11,12 +11,13 @@ import { usePokemons } from "../Hooks/usePokemons";
 import ResultModal from "../components/ResultModal";
 
 interface gameState {
-  lifes: number;
+  lives: number;
   start: boolean;
   win: boolean;
   lose: boolean;
 }
 
+// Home page
 const Home: NextPage = () => {
   const [sound, setSound] = useState<HTMLAudioElement>();
   const { pokemons } = usePokemons();
@@ -26,22 +27,25 @@ const Home: NextPage = () => {
     generateDefaultPokemon
   );
 
+  //Prepare game
   const [gameState, setGameState] = useState<gameState>({
-    lifes: 5,
+    lives: 5,
     start: false,
     win: false,
     lose: false,
   });
 
+  //Set start state to playing mode
   function handleGameStateStart() {
     setGameState({
-      lifes: 5,
+      lives: 5,
       start: true,
       win: false,
       lose: false,
     });
   }
 
+  // Set selected pokemon to default values
   function generateDefaultPokemon(): PokemonInterface {
     return {
       id: -1,
@@ -53,13 +57,17 @@ const Home: NextPage = () => {
     };
   }
 
+  // Select a random pokemon from pokemons list
   function generateNewRandomPokemon() {
     setRandomPokemon(_.sample(pokemons));
   }
 
+  // Prepare gamne to start again
   function handleGameRestart() {
     handleGameStart();
   }
+
+  // Prepare game to start
   function handleGameStart() {
     generateNewRandomPokemon();
     sound!.volume = 0.5;
@@ -67,31 +75,40 @@ const Home: NextPage = () => {
     handleGameStateStart();
   }
 
+  //Define audio file
   useEffect(() => {
     setSound(new Audio("/audios/audio.mp3"));
   }, []);
 
+  // Track/Udate game state when a pokemon
+  // is selected by the player
   useEffect(() => {
+    //If id matches → Player wins
     if (selectedPokemon?.id === randomPokemon?.id && gameState.start) {
       setGameState({ ...gameState, start: false, win: true });
     }
-
+    //If id doesn`t match → ...
     if (selectedPokemon?.id !== randomPokemon?.id && gameState.start) {
-      if (gameState.lifes - 1 === 0) {
+      // End game → Player loses
+      if (gameState.lives - 1 === 0) {
         setGameState({
           ...gameState,
           start: false,
           lose: true,
         });
       } else {
+        // Lose a live
         setGameState({
           ...gameState,
-          lifes: gameState.lifes - 1,
+          lives: gameState.lives - 1,
         });
       }
     }
   }, [selectedPokemon]);
 
+
+  // Track game state to display the
+  // result modal (win/lose modals)
   useEffect(() => {
     if (gameState.lose) {
       setIsResultModalOpen(true);
@@ -156,7 +173,7 @@ const Home: NextPage = () => {
                 <PokemonStats
                   selectedPokemon={selectedPokemon}
                   randomPokemon={randomPokemon}
-                  lifes={gameState.lifes}
+                  lives={gameState.lives}
                 />
               </section>
 

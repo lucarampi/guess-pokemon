@@ -13,6 +13,8 @@ interface ModalDoCaraBomProps {
   pokemon: PokemonInterface;
 }
 
+
+// Modal that hadle editing pokemons stats
 export default function EditPokemonModal({
   active,
   pokemon,

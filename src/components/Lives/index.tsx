@@ -1,13 +1,14 @@
 import styles from "./styles.module.scss";
 
-interface LifesProps {
-  lifes: number;
+interface LivesProps {
+  lives: number;
 }
 
-export function Lifes({ lifes }: LifesProps) {
+// Render remaining
+export function Lives({ lives }: LivesProps) {
   return (
-    <div className={styles.lifes}>
-      {Array(lifes)
+    <div className={styles.lives}>
+      {Array(lives)
         .fill("")
         .map((_, index) => (
           <img

@@ -6,8 +6,9 @@ import NewPokemonModal from "../NewPokemonModal";
 import styles from "./styles.module.scss";
 import useWindowDimensions from "../../Hooks/useWindowDimensions";
 import Link from "next/link";
-import { ToastContainer } from "react-toastify";
 
+
+// Responsive header. It's above everything.
 export function Header() {
   const [activeMenu, setActiveMenu] = useState(true);
 
@@ -33,7 +34,7 @@ export function Header() {
                 src="/images/logo.png"
                 alt="Logo do site"
                 onClick={() => {
-                  router.reload();
+                 router.pathname=="/" ? router.reload() : router.push("/") ;
                 }}
               />
             </Link>

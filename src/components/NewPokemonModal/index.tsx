@@ -9,6 +9,7 @@ interface ModalDoCaraBomProps {
   active: boolean;
 }
 
+// Modal responsable for creating a new pokémon
 export default function NewPokemonModal({ active }: ModalDoCaraBomProps) {
   const { handleCloseNewPokemonModal } = useNewPokemonModal();
   const { createPokemon } = usePokemons();

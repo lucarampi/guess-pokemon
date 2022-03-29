@@ -10,6 +10,7 @@ interface ResultModalProps {
   handleGameRestart: () => void;
 }
 
+// Modal that shows the game result (win/lose) 
 export default function ResultModal({
   result,
   pokemon,

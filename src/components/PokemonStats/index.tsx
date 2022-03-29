@@ -1,16 +1,17 @@
 import { PokemonInterface } from "../../services/axios";
 import styles from "./styles.module.scss";
 import { compareValuesLeftToRight, compareTypes } from "../../services/functions";
-import { Lifes } from "../Lifes";
+import { Lives } from "../Lives";
 
 interface PokemonStatsProps {
   selectedPokemon: PokemonInterface;
   randomPokemon: PokemonInterface;
-  lifes: number;
+  lives: number;
 }
 
+//render stats dashboard where pokemons (random and selected) are compared
 export function PokemonStats(pokemons: PokemonStatsProps) {
-  const { selectedPokemon, randomPokemon, lifes } = pokemons;
+  const { selectedPokemon, randomPokemon, lives } = pokemons;
 
   return (
     <section className={styles.stats}>
@@ -41,7 +42,7 @@ export function PokemonStats(pokemons: PokemonStatsProps) {
       </p>
       </div>
 
-      <Lifes lifes={lifes} />
+      <Lives lives={lives} />
       
     </section>
   );

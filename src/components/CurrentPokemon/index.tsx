@@ -5,6 +5,8 @@ import styles from "./styles.module.scss";
 
 interface PokemonProps extends PokemonInterface {}
 
+
+// Random pokemon picked by the game itself
 export function CurrentPokemon(pokemon: PokemonProps) {
   const { isLoading } = usePokemons();
 
