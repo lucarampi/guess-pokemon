@@ -18,77 +18,71 @@ interface gameState {
 }
 
 const Home: NextPage = () => {
-  const [sound,setSound] = useState<HTMLAudioElement>();
+  const [sound, setSound] = useState<HTMLAudioElement>();
   const { pokemons } = usePokemons();
   const [isResultModalOpen, setIsResultModalOpen] = useState(false);
   const [randomPokemon, setRandomPokemon] = useState<PokemonInterface>();
-  const [selectedPokemon, setSelectedPokemon] = useState<PokemonInterface>();
-  const [selectedId, setSelectedId] = useState(0);
+  const [selectedPokemon, setSelectedPokemon] = useState<PokemonInterface>(
+    generateDefaultPokemon
+  );
+
   const [gameState, setGameState] = useState<gameState>({
     lifes: 5,
     start: false,
     win: false,
     lose: false,
   });
+
+  function handleGameStateStart() {
+    setGameState({
+      lifes: 5,
+      start: true,
+      win: false,
+      lose: false,
+    });
+  }
+
   function generateDefaultPokemon(): PokemonInterface {
     return {
       id: -1,
       name: "Select Pokemon",
-      imageUrl:
-        "/images/pokeball.png",
+      imageUrl: "/images/pokeball.png",
       types: { type1: "", type2: "" },
       height: 0,
       weight: 0,
     };
   }
+
   function generateNewRandomPokemon() {
     setRandomPokemon(_.sample(pokemons));
-    setGameState({
-      ...gameState,
-      lifes: 5,
-      start: true,
-      lose: false,
-      win: false,
-    });
   }
-  function handleGameRestart(){
-    setGameState({
-      lifes: 5,
-      start: false,
-      win: false,
-      lose: false,
-    })
 
-    handleGameStart()
+  function handleGameRestart() {
+    handleGameStart();
   }
   function handleGameStart() {
-    setSelectedPokemon(generateDefaultPokemon);
-    setSelectedId(selectedPokemon?.id!)
     generateNewRandomPokemon();
-    sound!.volume=0.5;
-    sound!.play()
+    sound!.volume = 0.5;
+    sound!.play();
+    handleGameStateStart();
   }
-  useEffect(()=>{
-    setSound(new Audio("/audios/audio.mp3"))
-    setRandomPokemon(_.sample(pokemons) as PokemonInterface)
-    setSelectedPokemon(generateDefaultPokemon)
-    
 
-  },[])
+  useEffect(() => {
+    setSound(new Audio("/audios/audio.mp3"));
+  }, []);
+
   useEffect(() => {
     if (selectedPokemon?.id === randomPokemon?.id && gameState.start) {
       setGameState({ ...gameState, start: false, win: true });
-      setIsResultModalOpen(true);
     }
+
     if (selectedPokemon?.id !== randomPokemon?.id && gameState.start) {
       if (gameState.lifes - 1 === 0) {
         setGameState({
           ...gameState,
-          lifes: 5,
           start: false,
           lose: true,
         });
-        setIsResultModalOpen(true);
       } else {
         setGameState({
           ...gameState,
@@ -96,16 +90,18 @@ const Home: NextPage = () => {
         });
       }
     }
-  }, [selectedId]);
+  }, [selectedPokemon]);
 
   useEffect(() => {
     if (gameState.lose) {
       setIsResultModalOpen(true);
+      setSelectedPokemon(generateDefaultPokemon);
       return;
     }
 
     if (gameState.win) {
       setIsResultModalOpen(true);
+      setSelectedPokemon(generateDefaultPokemon);
       return;
     }
   }, [gameState]);
@@ -139,11 +135,10 @@ const Home: NextPage = () => {
             <>
               <section key={randomPokemon.name} className={styles.gameStats}>
                 <select
-                  value={selectedId}
+                  value={selectedPokemon.id}
                   name="pokemonSelect"
-                  defaultValue={selectedId}
+                  defaultValue={selectedPokemon.id}
                   onChange={(ev) => {
-                    setSelectedId(parseInt(ev.target.value, 10));
                     setSelectedPokemon(
                       _.find(pokemons, (p) => p.id === Number(ev.target.value))
                     );
