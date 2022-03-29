@@ -15,7 +15,7 @@ export default function PokemonsTable() {
       {isLoading ? (
         <LoadingPokeball />
       ) : pokemons.length > 0 ? (
-        _.sortBy(pokemons,["name"],["asc"] ).map((pokemon) => <PokemonItem key={pokemon.id} {...pokemon} />)
+        pokemons.map((pokemon) => <PokemonItem key={pokemon.id} {...pokemon} />)
       ) : (
         <div className={styles.warning_empty}>
           Ops... parece que não tem nada aqui... Cadastre um{" "}
