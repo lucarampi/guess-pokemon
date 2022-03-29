@@ -61,4 +61,4 @@ After that just type:
   npm run dev
 ```
 
-You can try the game by ![clicking here](https://guess-pokemon-sable.vercel.app/)
+You can try the game by [clicking here](https://guess-pokemon-sable.vercel.app/)
