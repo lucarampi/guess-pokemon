@@ -13,7 +13,6 @@ interface ModalDoCaraBomProps {
   pokemon: PokemonInterface;
 }
 
-
 // Modal that hadle editing pokemons stats
 export default function EditPokemonModal({
   active,
@@ -57,7 +56,7 @@ export default function EditPokemonModal({
     handleResetEditPokemonModal();
   }
   function handleErrorOnImageUrl() {
-    toast.warn("Imagem inválida! Substituída pela imagem anterior...", {
+    toast.warn("Invalid image! Changed back to a default one...", {
       position: "bottom-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -97,18 +96,18 @@ export default function EditPokemonModal({
             onError={handleErrorOnImageUrl}
           />
           <label className={styles.tip} htmlFor="_height">
-            * Cole o link (URL) no campo a baixo
+            * Paste the image link (URL) below.
           </label>
           <input
             type="text"
-            placeholder="Link imagem Pokemon (URL)"
+            placeholder="Image link (URL) here"
             name="_imageUrl"
             required
             value={imageUrlAux}
             onChange={(event) => setImageUrlAux(event.target.value)}
           />
           <label className={styles.tip} htmlFor="_height">
-            * Nome
+            * Name
           </label>
           <input
             className={styles.capitalize}
@@ -122,15 +121,15 @@ export default function EditPokemonModal({
 
           <div className={styles.two_items_container}>
             <label className={styles.tip} htmlFor="_weight">
-              * Peso (gramas)
+              * Weight (grams)
             </label>
             <label className={styles.tip} htmlFor="_height">
-              * Altura (centimetros)
+              * Height (centimeters)
             </label>
             <input
               className={styles.capitalize}
               type="number"
-              placeholder="Peso"
+              placeholder="420"
               name="_weight"
               required
               min={0}
@@ -142,7 +141,7 @@ export default function EditPokemonModal({
             <input
               className={styles.capitalize}
               type="number"
-              placeholder="Altura"
+              placeholder="69"
               name="_height"
               required
               min={0}
@@ -153,15 +152,15 @@ export default function EditPokemonModal({
           </div>
           <div className={styles.two_items_container}>
             <label className={styles.tip} htmlFor="_height">
-              * Tipo 1
+              * Type 1
             </label>
             <label className={styles.tip} htmlFor="_height">
-              * Tipo 2
+              * Type 2
             </label>
             <input
               className={styles.capitalize}
               type="text"
-              placeholder="Tipo 1"
+              placeholder="Grass"
               name="_type1"
               required
               value={type1}
@@ -171,7 +170,7 @@ export default function EditPokemonModal({
             <input
               className={styles.capitalize}
               type="text"
-              placeholder="Tipo 2"
+              placeholder="Fire"
               name="_type2"
               value={type2}
               onChange={(event) => setType2(event.target.value)}
@@ -190,7 +189,7 @@ export default function EditPokemonModal({
             </button>
 
             <button className={styles.submit_button} type="submit">
-              Salvar mudanças
+              Save changes
             </button>
           </div>
         </form>

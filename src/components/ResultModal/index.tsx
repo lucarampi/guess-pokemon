@@ -49,13 +49,13 @@ export default function ResultModal({
 
         {result ? (
           <div className={styles.game_win}>
-            <h1>Parabéns!</h1>
-            <h3>Você capturou um <span>{pokemon.name}</span>!</h3>
+            <h1>Gotcha!</h1>
+            <h3><span>{pokemon.name}</span> was caught!</h3>
           </div>
         ) : (
           <div className={styles.game_lose}>
-            <h1>Essa não...</h1>
-            <h3><span>{pokemon.name}</span> escapou!</h3>
+            <h1>Oh no...</h1>
+            <h3>Wild <span>{pokemon.name}</span> fled!</h3>
           </div>
         )}
 
@@ -69,7 +69,7 @@ export default function ResultModal({
           handleCloseResultModal}
         }
         >
-          Tentar Novamente
+          Try again
         </button>
       </div>
     </div>

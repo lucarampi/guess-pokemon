@@ -6,7 +6,7 @@ import LoadingPokeball from "../LoadingPokeball";
 import { PokemonItem } from "../PokemonItem";
 import styles from "./styles.module.scss";
 
-//Render every pokemon (PokemonItem) 
+//Render every pokemon (PokemonItem)
 export default function PokemonsTable() {
   const { pokemons, isLoading } = usePokemons();
   const { handleOpenNewPokemonModal } = useNewPokemonModal();
@@ -25,9 +25,11 @@ export default function PokemonsTable() {
       ) : (
         //If there is no pokemon on database, the ask user to add one
         <div className={styles.warning_empty}>
-          Ops... parece que não tem nada aqui... Cadastre um{" "}
-          <strong onClick={handleOpenNewPokemonModal}>novo pokemon</strong> para
-          poder jogar
+          Hmm... looks like all pokemons ran away...!{" "}
+          <strong onClick={handleOpenNewPokemonModal}>
+            Create a new pokemon
+          </strong>{" "}
+          to play the game.
         </div>
       )}
     </div>
