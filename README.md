@@ -60,3 +60,5 @@ After that just type:
   #or
   npm run dev
 ```
+
+You can try the game by [clicking here](https://guess-pokemon-sable.vercel.app/)
