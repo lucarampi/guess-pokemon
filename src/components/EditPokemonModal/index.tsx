@@ -112,7 +112,7 @@ export default function EditPokemonModal({
           <input
             className={styles.capitalize}
             type="text"
-            placeholder="Pokemon's Name"
+            placeholder=""
             name="_name"
             required
             value={name}
@@ -129,7 +129,7 @@ export default function EditPokemonModal({
             <input
               className={styles.capitalize}
               type="number"
-              placeholder="420"
+              placeholder=""
               name="_weight"
               required
               min={0}
@@ -141,7 +141,7 @@ export default function EditPokemonModal({
             <input
               className={styles.capitalize}
               type="number"
-              placeholder="69"
+              placeholder=""
               name="_height"
               required
               min={0}
@@ -160,7 +160,7 @@ export default function EditPokemonModal({
             <input
               className={styles.capitalize}
               type="text"
-              placeholder="Grass"
+              placeholder=""
               name="_type1"
               required
               value={type1}
@@ -170,7 +170,7 @@ export default function EditPokemonModal({
             <input
               className={styles.capitalize}
               type="text"
-              placeholder="Fire"
+              placeholder=""
               name="_type2"
               value={type2}
               onChange={(event) => setType2(event.target.value)}
