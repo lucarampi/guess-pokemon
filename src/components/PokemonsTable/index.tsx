@@ -21,7 +21,7 @@ export default function PokemonsTable() {
         <LoadingPokeball />
       ) : pokemons.length > 0 ? (
         //Once the pokemons are loaded, if there is any pokemon, render it
-        pokemons.map((pokemon) => <PokemonItem key={pokemon.id} {...pokemon} />)
+        _.sortBy(pokemons,["name"],["asc"] ).map((pokemon) => <PokemonItem key={pokemon.id} {...pokemon} />)
       ) : (
         //If there is no pokemon on database, the ask user to add one
         <div className={styles.warning_empty}>
